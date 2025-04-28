@@ -1,8 +1,11 @@
 
-import React, { useState } from 'react';
-import { projects } from '@/data/projects';
-import ProjectCard from './ProjectCard';
+import React, { useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import ProjectCard from './ProjectCard';
+
+// Import project data
+import { projects } from '@/data/projects';
 
 const Projects = () => {
   const [filter, setFilter] = useState<string | null>(null);
@@ -13,14 +16,45 @@ const Projects = () => {
     ? projects.filter(project => project.category === filter)
     : projects;
 
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          entry.target.classList.remove('inactive');
+        }
+      });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll('.project-reveal');
+    revealElements.forEach((element, index) => {
+      element.classList.add('inactive');
+      // Add staggered delay
+      (element as HTMLElement).style.transitionDelay = `${index * 0.1}s`;
+      observer.observe(element);
+    });
+
+    return () => {
+      revealElements.forEach(element => {
+        observer.unobserve(element);
+      });
+    };
+  }, [filteredProjects]);
+
   return (
-    <section id="projects" className="section bg-brand-light-gray">
+    <section id="projects" className="section">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <Badge className="bg-brand-purple/10 text-brand-purple border-none mb-4">Portfolio</Badge>
+          <Badge className="bg-gradient-to-r from-[#FFC0CB]/30 to-[#1E90FF]/30 text-gray-700 border-none mb-4">Portfolio</Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Explore a selection of my most impactful marketing campaigns and brand strategies that delivered exceptional results.
+          <p className="text-gray-700 max-w-2xl mx-auto">
+            A selection of marketing and development projects showcasing my dual expertise in technical implementation and creative strategy.
           </p>
         </div>
         
@@ -31,7 +65,7 @@ const Projects = () => {
               key={index}
               className={`cursor-pointer px-4 py-2 ${
                 (filter === category || (filter === null && category === 'All'))
-                  ? 'bg-brand-purple text-white'
+                  ? 'bg-gradient-to-r from-[#FFC0CB] to-[#1E90FF] text-white'
                   : 'bg-white hover:bg-gray-100'
               }`}
               onClick={() => setFilter(category === 'All' ? null : category)}
@@ -44,7 +78,9 @@ const Projects = () => {
         {/* Projects grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <div key={project.id} className="project-reveal reveal">
+              <ProjectCard project={project} />
+            </div>
           ))}
         </div>
       </div>

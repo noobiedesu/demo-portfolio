@@ -2,8 +2,11 @@
 import React, { useEffect } from 'react';
 import Layout from '@/components/Layout';
 import Hero from '@/components/Hero';
-import Projects from '@/components/Projects';
+import Timeline from '@/components/Timeline';
 import About from '@/components/About';
+import Skills from '@/components/Skills';
+import Projects from '@/components/Projects';
+import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 
 const Index = () => {
@@ -20,9 +23,6 @@ const Index = () => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
           entry.target.classList.remove('inactive');
-        } else {
-          entry.target.classList.remove('active');
-          entry.target.classList.add('inactive');
         }
       });
     }, observerOptions);
@@ -44,12 +44,22 @@ const Index = () => {
     <Layout>
       <Hero />
       
+      <Timeline />
+      
+      <div className="reveal">
+        <About />
+      </div>
+      
+      <div className="reveal">
+        <Skills />
+      </div>
+      
       <div className="reveal">
         <Projects />
       </div>
       
       <div className="reveal">
-        <About />
+        <Testimonials />
       </div>
       
       <div className="reveal">
