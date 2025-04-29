@@ -102,7 +102,7 @@ const Timeline = () => {
     <section 
       id="timeline" 
       ref={timelineRef} 
-      className="section bg-gradient-to-r from-[#FFC0CB]/10 to-[#1E90FF]/10 overflow-hidden"
+      className="section bg-gradient-to-r from-[#FFC0CB]/10 to-[#1E90FF]/10 overflow-hidden py-16 md:py-24"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
@@ -113,15 +113,16 @@ const Timeline = () => {
           </p>
         </div>
         
-        {/* Scrollable timeline */}
-        <div className="timeline-container">
-          <div className="timeline pb-8">
+        {/* Scrollable timeline - mobile-optimized */}
+        <div className="timeline-container overflow-x-auto pb-4">
+          <div className="timeline flex flex-row md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 min-w-max md:min-w-0 pb-8 px-2">
             {milestones.map((milestone, index) => (
-              <div key={milestone.id} className="timeline-reveal timeline-card">
+              <div key={milestone.id} 
+                className="timeline-reveal timeline-card bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm flex flex-col items-center text-center w-[260px] md:w-auto">
                 <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-r from-[#FFC0CB] to-[#1E90FF] text-white mb-2">
                   <milestone.icon size={20} />
                 </div>
-                <span className="timeline-year">{milestone.year}</span>
+                <span className="timeline-year font-bold text-gray-400">{milestone.year}</span>
                 <h3 className="text-lg font-bold mb-2">{milestone.title}</h3>
                 <p className="text-sm text-gray-600 text-center">{milestone.description}</p>
               </div>

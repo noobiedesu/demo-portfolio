@@ -44,27 +44,27 @@ const Index = () => {
     <Layout>
       <Hero />
       
-      <div className="px-4 sm:px-0">
+      <div className="md:px-4 px-2">
         <Timeline />
       </div>
       
-      <div className="reveal">
+      <div className="reveal px-4 md:px-0">
         <About />
       </div>
       
-      <div className="reveal">
+      <div className="reveal px-4 md:px-0">
         <Skills />
       </div>
       
-      <div className="reveal">
+      <div className="reveal px-4 md:px-0">
         <Projects />
       </div>
       
-      <div className="reveal">
+      <div className="reveal px-4 md:px-0">
         <Testimonials />
       </div>
       
-      <div className="reveal">
+      <div className="reveal px-4 md:px-0">
         <Contact />
       </div>
     </Layout>

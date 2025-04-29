@@ -26,7 +26,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         />
         
         {/* Overlay that slides up on hover */}
-        <div className="project-overlay absolute inset-0 bg-gradient-to-t from-[#1E90FF]/80 to-[#FFC0CB]/80 flex flex-col justify-center items-center px-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out text-white">
+        <div className="project-overlay absolute inset-0 bg-gradient-to-t from-[#1E90FF]/80 to-[#FFC0CB]/80 flex flex-col justify-center items-center px-4 opacity-0 transform translate-y-full group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out text-white">
           <h4 className="text-lg font-bold mb-2">{project.title}</h4>
           <p className="text-sm mb-4 text-center">{project.description}</p>
           <Button variant="outline" className="bg-white/20 text-white border-white hover:bg-white/40 flex items-center gap-2">
