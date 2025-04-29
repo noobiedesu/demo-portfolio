@@ -44,7 +44,9 @@ const Index = () => {
     <Layout>
       <Hero />
       
-      <Timeline />
+      <div className="px-4 sm:px-0">
+        <Timeline />
+      </div>
       
       <div className="reveal">
         <About />

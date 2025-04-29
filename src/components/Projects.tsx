@@ -3,12 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import ProjectCard from './ProjectCard';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 // Import project data
 import { projects } from '@/data/projects';
 
 const Projects = () => {
   const [filter, setFilter] = useState<string | null>(null);
+  const isMobile = useIsMobile();
   
   const categories = ['All', ...Array.from(new Set(projects.map(project => project.category)))];
   
@@ -48,8 +50,8 @@ const Projects = () => {
   }, [filteredProjects]);
 
   return (
-    <section id="projects" className="section">
-      <div className="container mx-auto px-4">
+    <section id="projects" className="section py-12 md:py-24">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <Badge className="bg-gradient-to-r from-[#FFC0CB]/30 to-[#1E90FF]/30 text-gray-700 border-none mb-4">Portfolio</Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
@@ -59,7 +61,7 @@ const Projects = () => {
         </div>
         
         {/* Category filters */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <div className="flex flex-wrap justify-center gap-2 mb-10 px-2">
           {categories.map((category, index) => (
             <Badge 
               key={index}
@@ -67,7 +69,7 @@ const Projects = () => {
                 (filter === category || (filter === null && category === 'All'))
                   ? 'bg-gradient-to-r from-[#FFC0CB] to-[#1E90FF] text-white'
                   : 'bg-white hover:bg-gray-100'
-              }`}
+              } transition-all duration-300`}
               onClick={() => setFilter(category === 'All' ? null : category)}
             >
               {category}
@@ -76,7 +78,7 @@ const Projects = () => {
         </div>
         
         {/* Projects grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filteredProjects.map((project) => (
             <div key={project.id} className="project-reveal reveal">
               <ProjectCard project={project} />
