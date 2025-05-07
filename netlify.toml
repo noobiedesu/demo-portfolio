@@ -1,0 +1,9 @@
+[build]
+  command   = "npm run build"
+  publish   = "dist"          # thư mục output của Vite
+  environment = {              # nếu cần override biến môi trường
+    NODE_VERSION = "18"        # hoặc phiên bản Node bạn muốn
+  }
+
+[dev]
+  port = 8888                  # port Netlify Dev nếu dùng plugin
