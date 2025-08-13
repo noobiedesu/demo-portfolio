@@ -5,11 +5,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ExternalLink } from 'lucide-react';
-import { 
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
 
 interface ProjectCardProps {
   project: Project;
@@ -17,36 +12,36 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
-    <Card className="project-card h-full flex flex-col group transition-all duration-300 hover:shadow-lg">
+    <Card className="pixel-card h-full flex flex-col group transition-all duration-200 hover:shadow-xl bg-card">
       <div className="aspect-video w-full overflow-hidden relative">
         <img 
           src={project.image} 
           alt={project.title} 
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover pixel-image transition-transform duration-300 group-hover:scale-110"
         />
         
-        {/* Overlay that slides up on hover */}
-        <div className="project-overlay absolute inset-0 bg-gradient-to-t from-[#1E90FF]/80 to-[#FFC0CB]/80 flex flex-col justify-center items-center px-4 opacity-0 transform translate-y-full group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out text-white">
-          <h4 className="text-lg font-bold mb-2">{project.title}</h4>
-          <p className="text-sm mb-4 text-center">{project.description}</p>
-          <Button variant="outline" className="bg-white/20 text-white border-white hover:bg-white/40 flex items-center gap-2">
+        {/* Pixel overlay that slides up on hover */}
+        <div className="project-overlay absolute inset-0 bg-primary/90 flex flex-col justify-center items-center px-4 opacity-0 transform translate-y-full group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-200 ease-out text-primary-foreground">
+          <h4 className="text-lg font-bold mb-2 font-mono">{project.title}</h4>
+          <p className="text-sm mb-4 text-center font-mono">{project.description}</p>
+          <Button variant="outline" className="pixel-button bg-background/20 text-foreground border-foreground hover:bg-background/40 flex items-center gap-2">
             View Details
             <ExternalLink size={16} />
           </Button>
         </div>
       </div>
-      <CardHeader>
+      <CardHeader className="p-4">
         <div className="flex justify-between items-center mb-2">
-          <Badge variant="outline" className="bg-[#1E90FF]/10 text-[#1E90FF] border-[#1E90FF]/20">
+          <Badge variant="outline" className="pixel-button bg-primary/10 text-primary border-primary/20 font-mono text-xs">
             {project.category}
           </Badge>
         </div>
-        <CardTitle className="text-xl">{project.title}</CardTitle>
-        <CardDescription className="line-clamp-2">{project.description}</CardDescription>
+        <CardTitle className="text-lg font-mono">{project.title}</CardTitle>
+        <CardDescription className="line-clamp-2 font-mono text-sm">{project.description}</CardDescription>
       </CardHeader>
-      <CardFooter className="flex gap-2 flex-wrap mt-auto pt-2">
+      <CardFooter className="flex gap-2 flex-wrap mt-auto pt-2 p-4">
         {project.tags.map((tag, index) => (
-          <Badge key={index} variant="secondary" className="text-xs bg-[#FFC0CB]/10 text-[#FFC0CB]">
+          <Badge key={index} variant="secondary" className="text-xs bg-accent/10 text-accent font-mono pixel-button">
             {tag}
           </Badge>
         ))}

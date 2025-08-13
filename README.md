@@ -1,4 +1,4 @@
-# Welcome to your Lovable project
+# Portfolio Rebuild v2 - Tran Thi Duyen
 
 ## Project info
 
@@ -60,9 +60,21 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/681a2127-7069-42a1-a0a9-1ec1b1dcf670) and click on Share -> Publish.
+- **Staging**: Automatically deployed on commits
+- **Production**: Click Share -> Publish in Lovable after QA approval
+- **Rollback**: Use git revert and redeploy
+
+## Content Management
+All content is centralized in `content.json` for easy editing.
+
+## Rebuild Features
+- ✅ Mobile-first pixel art theme
+- ✅ Dark/light mode with localStorage
+- ✅ Preserved all URLs and SEO
+- ✅ Optimized performance
+- ✅ Accessibility compliant
 
 ## Can I connect a custom domain to my Lovable project?
 
