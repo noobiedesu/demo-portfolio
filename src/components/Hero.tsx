@@ -23,35 +23,45 @@ const Hero = () => {
           </div>
           
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 animate-[fade-in_1s_ease-out]">
-            Tran Thi Duyen — Digital Marketer who builds <span className="text-primary">momentum</span>, not <span className="text-accent">discounts</span>
+            Trần Duyên — Customer-centric Digital Marketer for <span className="text-primary">in-house teams</span>
           </h1>
           
           <p className="text-sm md:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto animate-[fade-in_1.2s_ease-out] font-mono">
-            Pixel-perfect storytelling for brands that want to be remembered
+            Data-driven campaigns and conversion-first strategies built for long-term brand growth
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4 animate-[fade-in_1.4s_ease-out]">
             <Button asChild className="pixel-button text-lg px-8 py-4 group">
-              <a href="#projects">
-                View My Work
+              <a href="/contact">
+                Apply / Request CV
+                <ArrowDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
+              </a>
+            </Button>
+            <Button asChild variant="outline" className="pixel-button text-lg px-8 py-4 group">
+              <a href="#work">
+                See my work
                 <ArrowDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
               </a>
             </Button>
           </div>
           
-          {/* Pixel Stats */}
-          <div className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 animate-[fade-in_1.6s_ease-out]">
+          {/* Key Metrics */}
+          <div className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 animate-[fade-in_1.6s_ease-out]">
             <div className="pixel-card p-4 md:p-6 bg-card">
-              <p className="text-2xl md:text-3xl font-bold text-primary font-mono">+250%</p>
-              <p className="text-xs md:text-sm text-muted-foreground font-mono">Organic Growth</p>
+              <p className="text-xl md:text-2xl font-bold text-primary font-mono">2.55M</p>
+              <p className="text-xs md:text-sm text-muted-foreground font-mono">Users/Year</p>
             </div>
             <div className="pixel-card p-4 md:p-6 bg-card">
-              <p className="text-2xl md:text-3xl font-bold text-accent font-mono">70%</p>
+              <p className="text-xl md:text-2xl font-bold text-accent font-mono">+12.7%</p>
+              <p className="text-xs md:text-sm text-muted-foreground font-mono">Traffic Lift</p>
+            </div>
+            <div className="pixel-card p-4 md:p-6 bg-card">
+              <p className="text-xl md:text-2xl font-bold text-primary font-mono">+14.5%</p>
+              <p className="text-xs md:text-sm text-muted-foreground font-mono">CTR Improvement</p>
+            </div>
+            <div className="pixel-card p-4 md:p-6 bg-card">
+              <p className="text-xl md:text-2xl font-bold text-accent font-mono">29-70%</p>
               <p className="text-xs md:text-sm text-muted-foreground font-mono">Email Open Rate</p>
-            </div>
-            <div className="pixel-card p-4 md:p-6 bg-card">
-              <p className="text-2xl md:text-3xl font-bold text-primary font-mono">45%</p>
-              <p className="text-xs md:text-sm text-muted-foreground font-mono">CRO Improvement</p>
             </div>
           </div>
         </div>

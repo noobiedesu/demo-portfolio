@@ -1,101 +1,81 @@
 {
   "site": {
-    "name": "Tran Thi Duyen",
-    "tagline": "Digital Marketer who builds momentum, not discounts",
-    "description": "Pixel-perfect storytelling for brands that want to be remembered",
-    "url": "https://duyen.dev",
-    "email": "hello@duyen.dev",
-    "social": {
-      "linkedin": "https://linkedin.com/in/tranthi-duyen",
-      "twitter": "https://twitter.com/duyendev",
-      "instagram": "https://instagram.com/duyenmarketer"
-    }
-  },
-  "hero": {
-    "headline": "Tran Thi Duyen — Digital Marketer who builds momentum, not discounts",
-    "subheadline": "Pixel-perfect storytelling for brands that want to be remembered",
-    "cta": "View My Work",
-    "stats": [
+    "name": "Trần Duyên",
+    "position_target": "In-house Digital Marketing (SEO, CRM, CRO)",
+    "tagline": "Customer-centric marketing that turns attention into action",
+    "hero": {
+      "headline": "Trần Duyên — Customer-centric Digital Marketer for in-house teams",
+      "subhead": "Data-driven campaigns and conversion-first strategies built for long-term brand growth",
+      "cta_primary": {"label":"Apply / Request CV","href":"/contact"},
+      "cta_secondary": {"label":"See my work","href":"#work"}
+    },
+    "about": {
+      "short": "I am a customer-centric marketer who combines empathy and data to design marketing experiences that users want and companies can scale. My strength: SEO, CRM automation, and landing page conversion.",
+      "bullets": [
+        "Customer-centric strategy & user research",
+        "SEO & content growth for large audiences",
+        "CRM automation, segmentation, and conversion optimization"
+      ]
+    },
+    "projects": [
       {
-        "value": "+250%",
-        "label": "Organic Growth"
+        "id":"p1",
+        "title":"Website & SEO (MOS Training Center)",
+        "metric":"2.55M users/year",
+        "summary":"Led content strategy and growth initiatives focused on user journeys, content discoverability, and measurable engagement improvements.",
+        "category": "Marketing",
+        "tags": ["SEO", "Content Strategy", "User Experience"],
+        "image": "/src/assets/project1.png"
       },
       {
-        "value": "70%",
-        "label": "Email Open Rate"
+        "id":"p2",
+        "title":"Site Optimization (eIET / FTU 2024)",
+        "metric":"+12.7% traffic",
+        "summary":"Implemented UX and content updates to improve discoverability and retention across mobile users.",
+        "category": "Optimization",
+        "tags": ["UX Design", "Mobile Optimization", "Analytics"],
+        "image": "/src/assets/project2.png"
       },
       {
-        "value": "45%",
-        "label": "CRO Improvement"
+        "id":"p3",
+        "title":"CRM & Campaigns",
+        "metric":"CTR +14.5%",
+        "summary":"Designed segmentation and automated nurture flows to improve lead quality and email engagement.",
+        "category": "CRM",
+        "tags": ["Email Marketing", "Automation", "Segmentation"],
+        "image": "/src/assets/project3.png"
       }
-    ]
-  },
-  "projects": [
-    {
-      "id": 1,
-      "title": "SEO Growth Engine",
-      "description": "Organic traffic boost +250% for B2B SaaS client through technical SEO and content strategy.",
-      "summary": "Complete SEO overhaul for B2B SaaS startup resulting in 250% organic traffic increase, 40% improvement in lead quality, and 60% reduction in customer acquisition cost within 6 months.",
-      "metrics": [
-        "+250% organic traffic",
-        "40% better lead quality",
-        "60% lower CAC"
-      ],
-      "category": "Marketing",
-      "tags": ["SEO", "Technical Audit", "Content Strategy"],
-      "image": "/src/assets/project1.png"
-    },
-    {
-      "id": 2,
-      "title": "E-commerce CRO System",
-      "description": "Conversion rate optimization boosting checkout completions by 45% using A/B testing.",
-      "summary": "Comprehensive conversion rate optimization for e-commerce platform using data-driven A/B testing, user experience improvements, and checkout flow redesign.",
-      "metrics": [
-        "45% higher conversions",
-        "25% cart recovery",
-        "15% AOV increase"
-      ],
-      "category": "Marketing",
-      "tags": ["CRO", "A/B Testing", "Analytics"],
-      "image": "/src/assets/project2.png"
-    },
-    {
-      "id": 3,
-      "title": "Email Automation Suite",
-      "description": "Drip campaign system achieving 70% open rate and 25% click-through rate.",
-      "summary": "Custom email automation system with behavioral triggers, dynamic personalization, and advanced segmentation delivering industry-leading engagement rates.",
-      "metrics": [
-        "70% open rate",
-        "25% click-through",
-        "8x ROI improvement"
-      ],
-      "category": "Development",
-      "tags": ["Email Marketing", "Automation", "Analytics"],
-      "image": "/src/assets/project3.png"
-    }
-  ],
-  "about": {
-    "headline": "From pixels to performance",
-    "description": "I'm a digital marketer who codes and a developer who understands growth. This unique combination allows me to build marketing systems that actually work, not just look pretty.\n\nWith 5+ years of experience bridging the gap between technical implementation and marketing strategy, I help brands create memorable experiences that convert.",
+    ],
     "skills": [
-      "Technical SEO",
-      "Conversion Rate Optimization", 
-      "Email Marketing Automation",
-      "React & JavaScript",
-      "Analytics & Attribution",
-      "Growth Strategy"
-    ]
-  },
-  "contact": {
-    "headline": "Ready to build momentum?",
-    "description": "Let's create something memorable together. Whether you need technical marketing implementation or growth strategy, I'm here to help.",
-    "email": "hello@duyen.dev",
-    "calendar": "https://cal.com/duyen"
-  },
-  "seo": {
-    "title": "Tran Thi Duyen - Digital Marketer & Developer",
-    "description": "Digital marketer who builds momentum, not discounts. Pixel-perfect storytelling for brands that want to be remembered. SEO, CRO, and development expertise.",
-    "keywords": "digital marketing, SEO, conversion optimization, email marketing, React developer, growth marketing, technical marketing",
-    "canonical": "https://duyen.dev"
+      "Customer Research & Personas",
+      "SEO & Content Strategy",
+      "Landing Page Optimization (CRO)",
+      "CRM & Email Automation (Zoho, Getfly)",
+      "Paid Search & Campaign Measurement",
+      "Analytics & Reporting"
+    ],
+    "metrics": {
+      "annual_users":"2.55M",
+      "traffic_lift":"+12.7%",
+      "ads_ctr":"+14.5%",
+      "email_open_range":"29–70%"
+    },
+    "contact": {
+      "headline": "Ready to join your team?",
+      "description": "I'm seeking in-house digital marketing opportunities where I can apply customer-centric strategies and data-driven growth techniques to build long-term brand success.",
+      "email": "hello@example.com",
+      "cv": "assets/Tran_Thi_Duyen_CV.pdf",
+      "location": "Hà Nội, Vietnam",
+      "availability": "Open to in-house roles (remote/hybrid preferred)"
+    },
+    "meta": {
+      "title": "Trần Duyên — Customer-centric Digital Marketer",
+      "description": "Trần Duyên — Customer-centric digital marketer seeking in-house roles. Specializes in SEO, CRM automation and conversion optimization with measurable results.",
+      "keywords": "digital marketing, SEO, CRM automation, conversion optimization, in-house marketing, customer research, Vietnam marketer",
+      "og_title": "Trần Duyên — Customer-centric Digital Marketer",
+      "og_description": "Data-driven marketer with a focus on customer experience, SEO, CRM, and landing page conversion for in-house teams.",
+      "canonical": "https://duyen.dev"
+    },
+    "target_audience": "HR, Hiring Managers, Talent Acquisition"
   }
 }
