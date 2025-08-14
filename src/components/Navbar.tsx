@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from './ThemeToggle';
-import heartLogo from '@/assets/heart-logo.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,9 +29,8 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 text-lg font-bold font-mono pixel-button">
-          <img src={heartLogo} alt="Heart logo" className="w-8 h-8 pixelated" />
-          duyen<span className="text-accent">.</span>mar
+        <a href="#" className="text-lg font-bold font-mono pixel-button">
+          Duyen<span className="text-accent">.</span>dev
         </a>
         
         {/* Mobile Menu Button */}
