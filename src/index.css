@@ -105,6 +105,15 @@
     @apply shadow-lg transform -translate-y-1;
   }
 
+  .project-card .project-description {
+    max-height: 4.5em; /* ~3 lines of text */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* limit to 3 lines */
+    -webkit-box-orient: vertical;
+  }
+
   /* Section Spacing */
   .section {
     @apply py-16 md:py-24 px-4 sm:px-6 md:px-8;
