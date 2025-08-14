@@ -2,12 +2,7 @@
 import React, { useEffect } from 'react';
 import Layout from '@/components/Layout';
 import Hero from '@/components/Hero';
-import Timeline from '@/components/Timeline';
-import About from '@/components/About';
-import Skills from '@/components/Skills';
 import Projects from '@/components/Projects';
-import Testimonials from '@/components/Testimonials';
-import Contact from '@/components/Contact';
 
 const Index = () => {
   // Reveal animation on scroll
@@ -46,14 +41,6 @@ const Index = () => {
       
       <div className="reveal px-4 md:px-0">
         <Projects />
-      </div>
-      
-      <div className="reveal px-4 md:px-0">
-        <About />
-      </div>
-      
-      <div className="reveal px-4 md:px-0">
-        <Contact />
       </div>
     </Layout>
   );
