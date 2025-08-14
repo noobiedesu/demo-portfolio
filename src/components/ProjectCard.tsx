@@ -23,7 +23,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         {/* Pixel overlay that slides up on hover */}
         <div className="project-overlay absolute inset-0 bg-primary/90 flex flex-col justify-center items-center px-4 opacity-0 transform translate-y-full group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-200 ease-out text-primary-foreground">
           <h4 className="text-lg font-bold mb-2 font-mono">{project.title}</h4>
-          <p className="text-sm mb-4 text-center font-mono">{project.summary}</p>
+          <p className="text-sm mb-4 text-center font-mono project-description">{project.summary}</p>
           <Button variant="outline" className="pixel-button bg-background/20 text-foreground border-foreground hover:bg-background/40 flex items-center gap-2">
             View Details
             <ExternalLink size={16} />

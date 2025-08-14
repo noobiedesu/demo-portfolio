@@ -207,6 +207,15 @@
   .project-overlay {
     height: 100%;
   }
+
+  .project-overlay .project-description {
+    max-height: 4.5em; /* ~3 lines of text */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* limit to 3 lines */
+    -webkit-box-orient: vertical;
+  }
   
   /* Staggered animation for skills */
   .stagger-in:nth-child(1) { animation-delay: 0.1s; }
