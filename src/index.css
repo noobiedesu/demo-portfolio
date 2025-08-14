@@ -114,6 +114,13 @@
     -webkit-box-orient: vertical;
   }
 
+  .pixelated {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
   /* Section Spacing */
   .section {
     @apply py-16 md:py-24 px-4 sm:px-6 md:px-8;
