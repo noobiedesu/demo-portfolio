@@ -5,6 +5,8 @@ export interface CaseStudy {
   problem: string;
   actions: string[];
   results: string[];
+  skills: string[];
+  image: string;
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -21,7 +23,9 @@ export const caseStudies: CaseStudy[] = [
     results: [
       "Achieved 2.55M annual users",
       "Sustained Google Maps Top 1–3 ranking for 4 years"
-    ]
+    ],
+    skills: ["SEO", "Analytics", "ContentStrategy", "TechnicalSEO"],
+    image: "src/assets/seo-pixel.png"
   },
   {
     id: "cs-ux-eiet",
@@ -36,7 +40,9 @@ export const caseStudies: CaseStudy[] = [
     results: [
       "+12.7% traffic growth",
       "Smoother user journeys"
-    ]
+    ],
+    skills: ["UXDesign", "TechnicalOptimization", "ContentReorg", "Performance"],
+    image: "src/assets/ux-pixel.png"
   },
   {
     id: "cs-crm-email",
@@ -52,6 +58,8 @@ export const caseStudies: CaseStudy[] = [
       "Email OR: 29–34% (cold), 50.5–70.4% (warm)",
       "CTR: 6–18%",
       "Ads CTR +14.5%, 30% fewer erroneous leads"
-    ]
+    ],
+    skills: ["CRMAutomation", "EmailMarketing", "LeadSegmentation", "WorkflowDesign"],
+    image: "src/assets/crm-pixel.png"
   }
 ];

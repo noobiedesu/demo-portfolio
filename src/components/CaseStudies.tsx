@@ -1,10 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Target, Zap } from 'lucide-react';
+import { CheckCircle, Target, Zap, RotateCcw } from 'lucide-react';
 import { caseStudies } from '@/data/caseStudies';
 
 const CaseStudies = () => {
+  const [flippedCards, setFlippedCards] = useState<Set<string>>(new Set());
+
+  const toggleCard = (id: string) => {
+    setFlippedCards(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
+
   useEffect(() => {
     const observerOptions = {
       root: null,
@@ -49,53 +63,101 @@ const CaseStudies = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           {caseStudies.map((study, index) => (
             <div key={study.id} className="case-study-reveal reveal">
-              <Card className="h-full bg-card/80 backdrop-blur-sm border-border/50 hover:border-primary/20 transition-all duration-300">
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
-                    <Badge variant="outline" className="text-xs">{study.period}</Badge>
-                  </div>
-                  <CardTitle className="text-lg font-mono leading-tight">{study.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <Target className="w-4 h-4 text-destructive" />
-                      <span className="text-sm font-semibold text-foreground">Problem</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">{study.problem}</p>
+              <div className="flip-card h-80 cursor-pointer" onClick={() => toggleCard(study.id)}>
+                <div className={`flip-card-inner ${flippedCards.has(study.id) ? 'flipped' : ''}`}>
+                  {/* Front of card */}
+                  <div className="flip-card-front">
+                    <Card className="h-full pixel-card bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 border-2 border-primary/30 overflow-hidden">
+                      <div className="relative h-32 overflow-hidden">
+                        <img 
+                          src={study.image} 
+                          alt={study.title}
+                          className="w-full h-full object-cover pixel-image"
+                        />
+                        <div className="absolute top-2 right-2">
+                          <Badge variant="outline" className="text-xs pixel-button bg-background/80">{study.period}</Badge>
+                        </div>
+                      </div>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-lg font-mono leading-tight text-center">{study.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="pt-0">
+                        <div className="text-center mb-4">
+                          <p className="text-sm text-muted-foreground font-mono mb-3">Skills Used:</p>
+                          <div className="flex flex-wrap gap-1 justify-center">
+                            {study.skills.map((skill, idx) => (
+                              <Badge key={idx} variant="secondary" className="text-xs pixel-button">
+                                #{skill}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="text-center">
+                          <p className="text-xs text-muted-foreground font-mono flex items-center justify-center gap-2">
+                            <RotateCcw className="w-3 h-3" />
+                            Click to flip for details
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
                   
-                  <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <Zap className="w-4 h-4 text-yellow-500" />
-                      <span className="text-sm font-semibold text-foreground">Actions</span>
-                    </div>
-                    <ul className="space-y-1">
-                      {study.actions.map((action, idx) => (
-                        <li key={idx} className="text-sm text-muted-foreground flex items-start gap-1">
-                          <span className="text-accent mt-1">•</span>
-                          {action}
-                        </li>
-                      ))}
-                    </ul>
+                  {/* Back of card */}
+                  <div className="flip-card-back">
+                    <Card className="h-full pixel-card bg-gradient-to-br from-secondary/20 via-primary/10 to-accent/10 border-2 border-accent/30">
+                      <CardHeader className="pb-2">
+                        <div className="flex items-center justify-between">
+                          <Badge variant="outline" className="text-xs pixel-button">{study.period}</Badge>
+                          <RotateCcw className="w-4 h-4 text-muted-foreground" />
+                        </div>
+                        <CardTitle className="text-sm font-mono leading-tight">{study.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-3 text-xs">
+                        <div>
+                          <div className="flex items-center gap-1 mb-1">
+                            <Target className="w-3 h-3 text-destructive" />
+                            <span className="font-semibold text-foreground">Problem</span>
+                          </div>
+                          <p className="text-muted-foreground text-xs">{study.problem}</p>
+                        </div>
+                        
+                        <div>
+                          <div className="flex items-center gap-1 mb-1">
+                            <Zap className="w-3 h-3 text-yellow-500" />
+                            <span className="font-semibold text-foreground">Actions</span>
+                          </div>
+                          <ul className="space-y-0.5">
+                            {study.actions.slice(0, 2).map((action, idx) => (
+                              <li key={idx} className="text-muted-foreground flex items-start gap-1 text-xs">
+                                <span className="text-accent mt-0.5">•</span>
+                                {action}
+                              </li>
+                            ))}
+                            {study.actions.length > 2 && (
+                              <li className="text-muted-foreground text-xs">+{study.actions.length - 2} more...</li>
+                            )}
+                          </ul>
+                        </div>
+                        
+                        <div>
+                          <div className="flex items-center gap-1 mb-1">
+                            <CheckCircle className="w-3 h-3 text-green-500" />
+                            <span className="font-semibold text-foreground">Results</span>
+                          </div>
+                          <ul className="space-y-0.5">
+                            {study.results.map((result, idx) => (
+                              <li key={idx} className="text-muted-foreground flex items-start gap-1 text-xs">
+                                <span className="text-primary mt-0.5">✓</span>
+                                {result}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
-                  
-                  <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <CheckCircle className="w-4 h-4 text-green-500" />
-                      <span className="text-sm font-semibold text-foreground">Results</span>
-                    </div>
-                    <ul className="space-y-1">
-                      {study.results.map((result, idx) => (
-                        <li key={idx} className="text-sm text-muted-foreground flex items-start gap-1">
-                          <span className="text-primary mt-1">✓</span>
-                          {result}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </div>
           ))}
         </div>
