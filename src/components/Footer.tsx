@@ -30,8 +30,9 @@ const Footer = () => {
           <div>
             <h4 className="text-sm font-semibold uppercase mb-4 text-foreground">Contact</h4>
             <address className="not-italic text-sm text-muted-foreground">
-              <p className="mb-2">San Francisco, CA</p>
-              <p className="mb-2">hello@duyen.mar</p>
+              <p className="mb-2">Hà Nội, Vietnam</p>
+              <p className="mb-2">tranduyen.mar@gmail.com</p>
+              <a href="https://www.linkedin.com/in/duyentran089/" target="_blank" rel="noopener noreferrer" className="block mb-2 hover:text-primary transition-colors">LinkedIn</a>
             </address>
           </div>
         </div>

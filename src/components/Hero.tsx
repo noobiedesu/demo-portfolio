@@ -23,24 +23,29 @@ const Hero = () => {
           </div>
           
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 animate-[fade-in_1s_ease-out]">
-            Trần Duyên — Customer-centric Digital Marketer for <span className="text-primary">in-house teams</span>
+            Hi there, I'm <span className="text-primary">Tran Duyen'</span>
           </h1>
           
           <p className="text-sm md:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto animate-[fade-in_1.2s_ease-out] font-mono">
-            Data-driven campaigns and conversion-first strategies built for long-term brand growth
+            Love crafting strategies that resonate, not just decorate
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4 animate-[fade-in_1.4s_ease-out]">
             <Button asChild className="pixel-button text-lg px-8 py-4 group">
-              <a href="/contact">
-                Apply / Request CV
+              <a href="#case-studies">
+                View Case Studies
                 <ArrowDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
               </a>
             </Button>
             <Button asChild variant="outline" className="pixel-button text-lg px-8 py-4 group">
-              <a href="#work">
-                See my work
+              <a href="assets/Tran_Thi_Duyen_CV.pdf" target="_blank">
+                Download CV
                 <ArrowDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
+              </a>
+            </Button>
+            <Button asChild variant="link" className="text-lg px-8 py-4">
+              <a href="/contact">
+                Contact
               </a>
             </Button>
           </div>

@@ -1,81 +1,140 @@
 {
   "site": {
-    "name": "Trần Duyên",
-    "position_target": "In-house Digital Marketing (SEO, CRM, CRO)",
-    "tagline": "Customer-centric marketing that turns attention into action",
+    "name": "duyen.mar",
+    "tagline": "Driving Growth with SEO, Content & CRM Automation",
     "hero": {
-      "headline": "Trần Duyên — Customer-centric Digital Marketer for in-house teams",
-      "subhead": "Data-driven campaigns and conversion-first strategies built for long-term brand growth",
-      "cta_primary": {"label":"Apply / Request CV","href":"/contact"},
-      "cta_secondary": {"label":"See my work","href":"#work"}
-    },
-    "about": {
-      "short": "I am a customer-centric marketer who combines empathy and data to design marketing experiences that users want and companies can scale. My strength: SEO, CRM automation, and landing page conversion.",
-      "bullets": [
-        "Customer-centric strategy & user research",
-        "SEO & content growth for large audiences",
-        "CRM automation, segmentation, and conversion optimization"
+      "headline": "Hi there, I'm Tran Duyen'",
+      "subhead": "Love crafting strategies that resonate, not just decorate",
+      "ctas": [
+        {
+          "label": "View Case Studies",
+          "href": "#case-studies",
+          "style": "primary"
+        },
+        {
+          "label": "Download CV",
+          "href": "assets/Tran_Thi_Duyen_CV.pdf",
+          "style": "secondary"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact",
+          "style": "link"
+        }
       ]
     },
-    "projects": [
+    "about": {
+      "short": "Customer-centric digital marketer blending SEO strategy, social content, and CRM automation to deliver both visibility and conversion gains.",
+      "key_highlights": [
+        "2.55M annual users via SEO and content growth",
+        "Google Maps Top 1–3 for 4 consecutive years (Local SEO)",
+        "Email OR up to 70.4% and CTR up to 18% on warm segments",
+        "Google Ads CTR +14.5% with 30% fewer erroneous leads",
+        "+12.7% traffic after UX and technical improvements"
+      ]
+    },
+    "case_studies": [
       {
-        "id":"p1",
-        "title":"Website & SEO (MOS Training Center)",
-        "metric":"2.55M users/year",
-        "summary":"Led content strategy and growth initiatives focused on user journeys, content discoverability, and measurable engagement improvements.",
-        "category": "Marketing",
-        "tags": ["SEO", "Content Strategy", "User Experience"],
-        "image": "/src/assets/project1.png"
+        "id": "cs-seo-mos",
+        "title": "SEO & Site Growth – MOS Training Center",
+        "period": "2020–2024",
+        "problem": "Low discoverability and poor site performance limited growth.",
+        "actions": [
+          "Biannual SEO audits (Ahrefs/SEMrush)",
+          "Keyword mapping and on-page optimization",
+          "Enhanced page speed, image compression, hosting/domain governance"
+        ],
+        "results": [
+          "Achieved 2.55M annual users",
+          "Sustained Google Maps Top 1–3 ranking for 4 years"
+        ]
       },
       {
-        "id":"p2",
-        "title":"Site Optimization (eIET / FTU 2024)",
-        "metric":"+12.7% traffic",
-        "summary":"Implemented UX and content updates to improve discoverability and retention across mobile users.",
-        "category": "Optimization",
-        "tags": ["UX Design", "Mobile Optimization", "Analytics"],
-        "image": "/src/assets/project2.png"
+        "id": "cs-ux-eiet",
+        "title": "Website Optimization – iEIT",
+        "period": "2024",
+        "problem": "Outdated sitemap and heavy images hurt navigation and load times.",
+        "actions": [
+          "Rewrote and reorganized web content for clarity",
+          "Updated sitemap and improved navigation labels",
+          "Optimized images and fixed technical blockers"
+        ],
+        "results": [
+          "+12.7% traffic growth",
+          "Smoother user journeys"
+        ]
       },
       {
-        "id":"p3",
-        "title":"CRM & Campaigns",
-        "metric":"CTR +14.5%",
-        "summary":"Designed segmentation and automated nurture flows to improve lead quality and email engagement.",
-        "category": "CRM",
-        "tags": ["Email Marketing", "Automation", "Segmentation"],
-        "image": "/src/assets/project3.png"
+        "id": "cs-crm-email",
+        "title": "CRM & Email Automation – Lead Nurturing",
+        "period": "2024",
+        "problem": "Low-quality leads and weak engagement across funnels.",
+        "actions": [
+          "Segmented cold vs. warm leads in Zoho/Getfly",
+          "Automated nurture/promo workflows tailored by segment",
+          "Aligned ad targeting and messaging with sales-qualified profiles"
+        ],
+        "results": [
+          "Email OR: 29–34% (cold), 50.5–70.4% (warm)",
+          "CTR: 6–18%",
+          "Ads CTR +14.5%, 30% fewer erroneous leads"
+        ]
       }
     ],
-    "skills": [
-      "Customer Research & Personas",
-      "SEO & Content Strategy",
-      "Landing Page Optimization (CRO)",
-      "CRM & Email Automation (Zoho, Getfly)",
-      "Paid Search & Campaign Measurement",
-      "Analytics & Reporting"
+    "process": [
+      "Discover — Research, analytics, voice of customer",
+      "Define — Pinpoint problems, set KPIs",
+      "Design — Map journeys, content, and hypotheses",
+      "Deliver — Execute campaigns, automation, A/B tests",
+      "Debrief — Measure, capture learnings, iterate"
     ],
-    "metrics": {
-      "annual_users":"2.55M",
-      "traffic_lift":"+12.7%",
-      "ads_ctr":"+14.5%",
-      "email_open_range":"29–70%"
+    "skills": {
+      "core": [
+        "SEO & Content Strategy",
+        "Local SEO & CRO",
+        "CRM & Email Automation",
+        "Google Ads & Performance Marketing",
+        "Analytics & Reporting"
+      ],
+      "tools": [
+        "Google Analytics",
+        "Search Console",
+        "Ahrefs",
+        "SEMrush",
+        "Screaming Frog",
+        "WordPress",
+        "Zoho CRM",
+        "Getfly",
+        "Google Ads",
+        "Photoshop",
+        "Hotjar",
+        "AI Tools (ChatGPT, Lovable, Grok, Surfer SEO, etc.)"
+      ]
     },
+    "samples": [
+      {
+        "title": "Social Media Campaigns",
+        "context": "Educational + meme content targeting office workers and students",
+        "outcome": "~10% organic engagement rate, steady follower growth"
+      },
+      {
+        "title": "Landing Page Optimization – MOS Prep",
+        "context": "A/B tested landing page variants for MOS prep",
+        "outcome": "Higher lead capture and conversion rates"
+      },
+      {
+        "title": "Email Campaign Automation",
+        "context": "Segmented cold/warm leads; automated nurture flows in Zoho/Getfly",
+        "outcome": "Open rate up to 70.4%, CTR up to 18%, improved lead quality"
+      }
+    ],
     "contact": {
-      "headline": "Ready to join your team?",
-      "description": "I'm seeking in-house digital marketing opportunities where I can apply customer-centric strategies and data-driven growth techniques to build long-term brand success.",
-      "email": "hello@example.com",
-      "cv": "assets/Tran_Thi_Duyen_CV.pdf",
-      "location": "Hà Nội, Vietnam",
-      "availability": "Open to in-house roles (remote/hybrid preferred)"
+      "email": "tranduyen.mar@gmail.com",
+      "linkedin": "https://www.linkedin.com/in/duyentran089/",
+      "cv": "assets/Tran_Thi_Duyen_CV.pdf"
     },
-    "meta": {
-      "title": "Trần Duyên — Customer-centric Digital Marketer",
-      "description": "Trần Duyên — Customer-centric digital marketer seeking in-house roles. Specializes in SEO, CRM automation and conversion optimization with measurable results.",
-      "keywords": "digital marketing, SEO, CRM automation, conversion optimization, in-house marketing, customer research, Vietnam marketer",
-      "og_title": "Trần Duyên — Customer-centric Digital Marketer",
-      "og_description": "Data-driven marketer with a focus on customer experience, SEO, CRM, and landing page conversion for in-house teams.",
-      "canonical": "https://duyen.dev"
-    },
-    "target_audience": "HR, Hiring Managers, Talent Acquisition"
+    "footer": {
+      "quote": "Learn fast, adapt faster, never stop experimenting."
+    }
   }
 }

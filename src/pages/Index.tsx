@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import Layout from '@/components/Layout';
 import Hero from '@/components/Hero';
-import Projects from '@/components/Projects';
+import CaseStudies from '@/components/CaseStudies';
 
 const Index = () => {
   // Reveal animation on scroll
@@ -40,7 +40,7 @@ const Index = () => {
       <Hero />
       
       <div className="reveal px-4 md:px-0">
-        <Projects />
+        <CaseStudies />
       </div>
     </Layout>
   );
