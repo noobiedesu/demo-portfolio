@@ -68,7 +68,7 @@ const CaseStudies = () => {
                   {/* Front of card */}
                   <div className="flip-card-front">
                     <Card className="h-full pixel-card bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 border-2 border-primary/30 overflow-hidden">
-                      <div className="relative h-32 overflow-hidden">
+                      <div className="relative h-24 sm:h-28 md:h-32 overflow-hidden">
                         <img 
                           src={study.image} 
                           alt={study.title}
