@@ -43,11 +43,6 @@ const Hero = () => {
                 <ArrowDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
               </a>
             </Button>
-            <Button asChild variant="link" className="text-lg px-8 py-4">
-              <a href="/contact">
-                Contact
-              </a>
-            </Button>
           </div>
           
           {/* Key Metrics */}

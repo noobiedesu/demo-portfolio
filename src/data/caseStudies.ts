@@ -1,3 +1,7 @@
+import seoSynthwave from '@/assets/seo-synthwave.png';
+import uxSynthwave from '@/assets/ux-synthwave.png';
+import crmSynthwave from '@/assets/crm-synthwave.png';
+
 export interface CaseStudy {
   id: string;
   title: string;
@@ -25,7 +29,7 @@ export const caseStudies: CaseStudy[] = [
       "Sustained Google Maps Top 1–3 ranking for 4 years"
     ],
     skills: ["SEO", "Analytics", "ContentStrategy", "TechnicalSEO"],
-    image: "src/assets/seo-pixel.png"
+    image: seoSynthwave
   },
   {
     id: "cs-ux-eiet",
@@ -42,7 +46,7 @@ export const caseStudies: CaseStudy[] = [
       "Smoother user journeys"
     ],
     skills: ["UXDesign", "TechnicalOptimization", "ContentReorg", "Performance"],
-    image: "src/assets/ux-pixel.png"
+    image: uxSynthwave
   },
   {
     id: "cs-crm-email",
@@ -60,6 +64,6 @@ export const caseStudies: CaseStudy[] = [
       "Ads CTR +14.5%, 30% fewer erroneous leads"
     ],
     skills: ["CRMAutomation", "EmailMarketing", "LeadSegmentation", "WorkflowDesign"],
-    image: "src/assets/crm-pixel.png"
+    image: crmSynthwave
   }
 ];
