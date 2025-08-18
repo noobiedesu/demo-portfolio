@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Layout from '@/components/Layout';
 import Hero from '@/components/Hero';
 import CaseStudies from '@/components/CaseStudies';
-import SkillsTools from '@/components/SkillsTools';
+import SkillsTools from '@/components/sections/SkillsTools';
 
 const Index = () => {
   // Reveal animation on scroll
