@@ -34,24 +34,21 @@ export default function SkillsTools() {
           {/* Tools (logos) */}
           <div>
             <h3 className="font-mono font-semibold text-base md:text-lg mb-3">Tools</h3>
-            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
+            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4">
               {tools.map((t) => (
                 <div
                   key={t.name}
-                  className="group relative aspect-square rounded-xl bg-background/50 border border-border/50"
-                  aria-label={t.name}
+                  className="aspect-square rounded-lg bg-background/40 border border-border/50 flex items-center justify-center p-3"
                   title={t.name}
                 >
-                  <div className="relative inset-0 w-full h-full p-3 sm:p-4 flex items-center justify-center">
-                    <img
-                      src={t.src}
-                      alt={t.alt ?? t.name}
-                      className="max-w-full max-h-full object-contain grayscale opacity-90 group-hover:opacity-100 transition-opacity"
-                      loading="lazy"
-                      width={t.width || 64}
-                      height={t.height || 64}
-                    />
-                  </div>
+                  <img
+                    src={t.src}
+                    alt={t.alt ?? t.name}
+                    className="max-w-full max-h-full object-contain grayscale opacity-90 hover:opacity-100 transition"
+                    loading="lazy"
+                    width={64}
+                    height={64}
+                  />
                 </div>
               ))}
             </div>
