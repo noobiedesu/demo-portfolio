@@ -52,9 +52,6 @@ export default function SkillsTools() {
                 </div>
               ))}
             </div>
-            <p className="mt-3 text-[11px] md:text-xs text-muted-foreground">
-              *Logos normalized to square artboards for visual consistency; loaded lazily for mobile performance.
-            </p>
           </div>
         </div>
       </div>
