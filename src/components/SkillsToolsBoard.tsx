@@ -37,7 +37,8 @@ const DraggableItem: React.FC<DraggableItemProps> = ({ id, children }) => {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    opacity: isDragging ? 0.5 : 1,
+    opacity: isDragging ? 0.8 : 1,
+    zIndex: isDragging ? 1000 : 1,
   };
 
   return (
@@ -46,7 +47,7 @@ const DraggableItem: React.FC<DraggableItemProps> = ({ id, children }) => {
       style={style}
       {...attributes}
       {...listeners}
-      className="pixel-badge select-none touch-none"
+      className={`pixel-badge select-none touch-none ${isDragging ? 'animate-pulse' : ''}`}
       aria-label={`Draggable item ${children}`}
     >
       {children}
@@ -137,20 +138,30 @@ const SkillsToolsBoard: React.FC = () => {
   };
 
   return (
-    <section className="py-12 md:py-24">
+    <section className="py-12 md:py-24 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-10 left-10 w-4 h-4 bg-primary animate-ping"></div>
+        <div className="absolute top-20 right-20 w-3 h-3 bg-accent animate-ping" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-20 left-20 w-2 h-2 bg-secondary animate-ping" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-10 right-10 w-5 h-5 bg-primary animate-ping" style={{ animationDelay: '0.5s' }}></div>
+      </div>
+      
       <div className="container mx-auto px-4 sm:px-6">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 font-mono">
-          💡 Skills & Tools Board
-        </h2>
-        <p className="text-center text-muted-foreground mb-12 font-mono text-sm">
-          Drag and drop to reorder by priority • Changes saved automatically
-        </p>
+        <div className="text-center mb-12">
+          <h2 className="pixel-title text-3xl md:text-4xl font-bold mb-4">
+            🎮 Skills & Tools Board
+          </h2>
+          <p className="text-muted-foreground font-mono text-sm bg-muted/30 inline-block px-4 py-2 border border-border/50">
+            &gt; Drag and drop to reorder by priority • Changes saved automatically &lt;
+          </p>
+        </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Skills Section */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-mono font-semibold text-center mb-6">
-              Core Skills
+          <div className="pixel-section p-6">
+            <h3 className="text-xl font-mono font-bold text-center mb-6 pixel-title relative">
+              ⚡ Core Skills
             </h3>
             <DndContext
               sensors={sensors}
@@ -159,10 +170,12 @@ const SkillsToolsBoard: React.FC = () => {
             >
               <SortableContext items={skills} strategy={verticalListSortingStrategy}>
                 <div className="flex flex-col gap-3">
-                  {skills.map((skill) => (
-                    <DraggableItem key={skill} id={skill}>
-                      {skill}
-                    </DraggableItem>
+                  {skills.map((skill, index) => (
+                    <div key={skill} style={{ animationDelay: `${index * 0.05}s` }}>
+                      <DraggableItem id={skill}>
+                        {skill}
+                      </DraggableItem>
+                    </div>
                   ))}
                 </div>
               </SortableContext>
@@ -170,9 +183,9 @@ const SkillsToolsBoard: React.FC = () => {
           </div>
 
           {/* Tools Section */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-mono font-semibold text-center mb-6">
-              Essential Tools
+          <div className="pixel-section p-6">
+            <h3 className="text-xl font-mono font-bold text-center mb-6 pixel-title relative">
+              🛠️ Essential Tools
             </h3>
             <DndContext
               sensors={sensors}
@@ -182,9 +195,9 @@ const SkillsToolsBoard: React.FC = () => {
               <SortableContext items={tools} strategy={verticalListSortingStrategy}>
                 {/* Mobile: horizontal scroll */}
                 <div className="lg:hidden">
-                  <div className="flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory">
-                    {tools.map((tool) => (
-                      <div key={tool} className="flex-shrink-0 snap-start">
+                  <div className="flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+                    {tools.map((tool, index) => (
+                      <div key={tool} className="flex-shrink-0 snap-start" style={{ animationDelay: `${index * 0.1}s` }}>
                         <DraggableItem id={tool}>
                           {tool}
                         </DraggableItem>
@@ -195,10 +208,12 @@ const SkillsToolsBoard: React.FC = () => {
                 
                 {/* Desktop: vertical list */}
                 <div className="hidden lg:flex flex-col gap-3">
-                  {tools.map((tool) => (
-                    <DraggableItem key={tool} id={tool}>
-                      {tool}
-                    </DraggableItem>
+                  {tools.map((tool, index) => (
+                    <div key={tool} style={{ animationDelay: `${index * 0.05}s` }}>
+                      <DraggableItem id={tool}>
+                        {tool}
+                      </DraggableItem>
+                    </div>
                   ))}
                 </div>
               </SortableContext>
