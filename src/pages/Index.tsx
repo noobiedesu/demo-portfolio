@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Layout from '@/components/Layout';
 import Hero from '@/components/Hero';
 import CaseStudies from '@/components/CaseStudies';
-import SkillsTools from '@/components/SkillsTools';
+import SkillsToolsBoard from '@/components/SkillsToolsBoard';
 
 const Index = () => {
   // Reveal animation on scroll
@@ -45,7 +45,7 @@ const Index = () => {
       </div>
       
       <div className="reveal px-4 md:px-0">
-        <SkillsTools />
+        <SkillsToolsBoard />
       </div>
     </Layout>
   );
