@@ -32,7 +32,7 @@ const CaseStudies = () => {
           <Badge className="pixel-button bg-accent/20 text-accent border-accent/20 mb-3 font-mono">
             Case Studies
           </Badge>
-          <h2 className="text-xl md:text-3xl font-bold mb-2 font-mono">Real Results, Real Impact</h2>
+          <h2 className="pixel-title text-xl md:text-3xl font-bold mb-2 font-mono">📊 Real Results, Real Impact</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto font-mono text-xs md:text-sm">
             Strategic marketing initiatives that drove measurable outcomes
           </p>

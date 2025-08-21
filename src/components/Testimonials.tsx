@@ -50,7 +50,7 @@ const Testimonials = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <Badge className="bg-[#FFC0CB]/10 text-[#FFC0CB] border-[#FFC0CB]/20 mb-4">Testimonials</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Client Feedback</h2>
+          <h2 className="pixel-title text-3xl md:text-4xl font-bold mb-4 font-mono">💬 Client Feedback</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Don't just take my word for it. Here's what clients have to say about working with a full-stack marketer.
           </p>

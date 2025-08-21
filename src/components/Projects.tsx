@@ -54,7 +54,7 @@ const Projects = () => {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <Badge className="pixel-button bg-accent/20 text-accent border-accent/20 mb-4 font-mono">Portfolio</Badge>
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 font-mono">Recent Projects</h2>
+          <h2 className="pixel-title text-2xl md:text-3xl font-bold mb-4 font-mono">💼 Recent Projects</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto font-mono text-sm">
             Customer-focused marketing initiatives with measurable impact
           </p>

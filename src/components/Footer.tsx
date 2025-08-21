@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4 font-playfair">duyen<span className="text-primary">.</span>mar</h3>
+            <h3 className="pixel-title text-xl font-bold mb-4 font-mono">💎 duyen<span className="text-primary">.</span>mar</h3>
             <p className="text-sm text-muted-foreground max-w-xs">
               Blending technical expertise with marketing strategy to create compelling digital experiences that drive measurable results.
             </p>

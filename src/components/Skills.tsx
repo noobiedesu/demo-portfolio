@@ -85,7 +85,7 @@ const Skills = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <Badge className="bg-[#1E90FF]/10 text-[#1E90FF] border-[#1E90FF]/20 mb-4">Skillset</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Services & Expertise</h2>
+          <h2 className="pixel-title text-3xl md:text-4xl font-bold mb-4 font-mono">⚡ Services & Expertise</h2>
           <p className="text-gray-700 max-w-2xl mx-auto">
             Combining technical development skills with marketing expertise to deliver comprehensive digital solutions.
           </p>

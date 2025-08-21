@@ -22,8 +22,8 @@ const Hero = () => {
             />
           </div>
           
-          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 animate-[fade-in_1s_ease-out]">
-            Hi there, I'm <span className="text-primary">Tran Duyen'</span>
+          <h1 className="pixel-title text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 animate-[fade-in_1s_ease-out]">
+            👋 Hi there, I'm <span className="text-primary">Tran Duyen'</span>
           </h1>
           
           <p className="text-sm md:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto animate-[fade-in_1.2s_ease-out] font-mono">
