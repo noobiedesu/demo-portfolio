@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Layout from '@/components/Layout';
 import Hero from '@/components/Hero';
 import CaseStudies from '@/components/CaseStudies';
+import Process from '@/components/Process';
 import SkillsToolsBoard from '@/components/SkillsToolsBoard';
 
 const Index = () => {
@@ -42,6 +43,10 @@ const Index = () => {
       
       <div className="reveal px-4 md:px-0">
         <CaseStudies />
+      </div>
+      
+      <div className="reveal px-4 md:px-0">
+        <Process />
       </div>
       
       <div className="reveal px-4 md:px-0">
