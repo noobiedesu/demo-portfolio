@@ -4,7 +4,7 @@ import Layout from '@/components/Layout';
 import Hero from '@/components/Hero';
 import CaseStudies from '@/components/CaseStudies';
 import Process from '@/components/Process';
-import SkillsSection from '@/components/SkillsSection';
+import SkillsGravity from '@/components/SkillsGravity';
 import ToolsSection from '@/components/ToolsSection';
 import SkillsToolsBoard from '@/components/SkillsToolsBoard';
 
@@ -52,7 +52,7 @@ const Index = () => {
       </div>
       
       <div className="reveal px-4 md:px-0">
-        <SkillsSection />
+        <SkillsGravity />
       </div>
       
       <div className="reveal px-4 md:px-0">
