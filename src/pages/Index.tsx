@@ -4,6 +4,8 @@ import Layout from '@/components/Layout';
 import Hero from '@/components/Hero';
 import CaseStudies from '@/components/CaseStudies';
 import Process from '@/components/Process';
+import SkillsSection from '@/components/SkillsSection';
+import ToolsSection from '@/components/ToolsSection';
 import SkillsToolsBoard from '@/components/SkillsToolsBoard';
 
 const Index = () => {
@@ -47,6 +49,14 @@ const Index = () => {
       
       <div className="reveal px-4 md:px-0">
         <Process />
+      </div>
+      
+      <div className="reveal px-4 md:px-0">
+        <SkillsSection />
+      </div>
+      
+      <div className="reveal px-4 md:px-0">
+        <ToolsSection />
       </div>
       
       <div className="reveal px-4 md:px-0">
