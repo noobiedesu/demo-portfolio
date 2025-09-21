@@ -1,5 +1,5 @@
 
-import React, { useEffect, Suspense } from 'react';
+import React, { useEffect } from 'react';
 import Layout from '@/components/Layout';
 import Hero from '@/components/Hero';
 import CaseStudies from '@/components/CaseStudies';
@@ -52,9 +52,7 @@ const Index = () => {
       </div>
       
       <div className="reveal px-4 md:px-0">
-        <Suspense fallback={<div className="text-center py-12">Loading Skills...</div>}>
-          <SkillsGravity />
-        </Suspense>
+        <SkillsGravity />
       </div>
       
       <div className="reveal px-4 md:px-0">
