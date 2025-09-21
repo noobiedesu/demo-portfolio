@@ -50,6 +50,7 @@ const SkillsGravity = () => {
       // Create engine with optimized settings
       const engine = Engine.create();
       engine.world.gravity.y = 0.5; // Lighter gravity
+      engine.enableSleeping = true; // Enable sleeping for performance
       
       // Create renderer with anti-flicker settings
       const render = Render.create({
@@ -83,6 +84,7 @@ const SkillsGravity = () => {
         return Bodies.rectangle(randomX, randomY, skillWidth, skillHeight, {
           restitution: 0.3, // Low bounce for quick settle
           friction: 0.1,
+          slop: 0.05, // Reduce collision jitter
           collisionFilter: {
             category: 0x0001 << index,
             mask: 0xFFFFFFFF
@@ -110,9 +112,9 @@ const SkillsGravity = () => {
       // Add all bodies to world
       World.add(engine.world, [...boundaries, ...skillBodies, mouseConstraint]);
 
-      // Create runner with throttled updates for mobile
+      // Create runner with optimized FPS (30fps = 33.33ms delta)
       const runner = Runner.create({
-        delta: isMobile ? 33.33 : 16.67 // 30fps on mobile, 60fps on desktop
+        delta: 33.33
       });
 
       // Store references
@@ -123,6 +125,21 @@ const SkillsGravity = () => {
       // Start rendering and running
       Render.run(render);
       Runner.run(runner, engine);
+
+      // Sleep detection for performance optimization
+      const { Events } = Matter;
+      Events.on(engine, 'sleepStart', () => {
+        // Check if all bodies are sleeping
+        const allSleeping = engine.world.bodies.every(body => body.isSleeping || body.isStatic);
+        if (allSleeping && runnerRef.current) {
+          Runner.stop(runnerRef.current);
+          setTimeout(() => {
+            if (runnerRef.current && engineRef.current) {
+              Runner.run(runnerRef.current, engineRef.current);
+            }
+          }, 100); // Resume after brief pause
+        }
+      });
 
       // Create DOM elements for each skill
       skillBodies.forEach((body, index) => {
@@ -197,18 +214,13 @@ const SkillsGravity = () => {
 
   useEffect(() => {
     return () => {
-      // Cleanup
-      if (runnerRef.current) {
-        const Matter = require('matter-js');
-        Matter.Runner.stop(runnerRef.current);
-      }
-      if (renderRef.current) {
-        const Matter = require('matter-js');
-        Matter.Render.stop(renderRef.current);
-      }
-      if (engineRef.current) {
-        const Matter = require('matter-js');
-        Matter.Engine.clear(engineRef.current);
+      // Proper cleanup
+      if (runnerRef.current && engineRef.current) {
+        loadMatter().then(Matter => {
+          Matter.Runner.stop(runnerRef.current);
+          Matter.Render.stop(renderRef.current);
+          Matter.Engine.clear(engineRef.current);
+        });
       }
     };
   }, []);
