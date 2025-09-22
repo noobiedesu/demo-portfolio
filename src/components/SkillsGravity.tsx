@@ -14,6 +14,23 @@ const SkillsGravity = () => {
   const [isInView, setIsInView] = useState(false);
 
   const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+  
+  // Short labels for mobile to prevent overflow
+  const getSkillLabel = (skill: string) => {
+    if (!isMobile) return skill;
+    
+    const shortLabels: { [key: string]: string } = {
+      "SEO & Content Strategy": "SEO Strategy",
+      "Local SEO & CRO": "Local SEO",
+      "CRM & Email Automation": "CRM Automation",
+      "Performance Marketing": "Performance Ads",
+      "Analytics & Reporting": "Analytics",
+      "Data Analysis": "Data Analysis",
+      "Campaign Development": "Campaigns"
+    };
+    
+    return shortLabels[skill] || skill;
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -45,7 +62,7 @@ const SkillsGravity = () => {
       
       const containerRect = container.getBoundingClientRect();
       const width = containerRect.width;
-      const height = isMobile ? 288 : 384; // h-72 = 288px, h-96 = 384px
+      const height = isMobile ? 320 : 384; // h-80 = 320px, h-96 = 384px
 
       // Create engine with optimized settings
       const engine = Engine.create();
@@ -146,11 +163,12 @@ const SkillsGravity = () => {
         const skillDiv = document.createElement('div');
         skillDiv.className = `
           absolute pointer-events-none select-none pixel-badge
-          will-change-transform
+          will-change-transform break-words whitespace-normal
+          max-w-[140px] text-center leading-tight
         `;
         skillDiv.style.transform = `translate(${body.position.x - body.bounds.max.x / 2}px, ${body.position.y - body.bounds.max.y / 2}px)`;
-        skillDiv.textContent = skills[index];
-        skillDiv.setAttribute('aria-label', `Skill: ${skills[index]}`);
+        skillDiv.textContent = getSkillLabel(skills[index]);
+        skillDiv.setAttribute('aria-label', `Skill: ${getSkillLabel(skills[index])}`);
         skillDiv.setAttribute('role', 'button');
         skillDiv.setAttribute('tabindex', '0');
         
@@ -233,7 +251,7 @@ const SkillsGravity = () => {
             ref={containerRef}
             className={`
               relative overflow-hidden
-              ${isMobile ? 'h-72' : 'h-96'}
+              ${isMobile ? 'h-80' : 'h-96'}
               bg-gradient-to-b from-blue-100 to-purple-100
               border-2 border-dotted border-purple-300
               rounded-lg
