@@ -145,11 +145,7 @@ const SkillsGravity = () => {
       skillBodies.forEach((body, index) => {
         const skillDiv = document.createElement('div');
         skillDiv.className = `
-          absolute pointer-events-none select-none
-          px-4 py-2 border-2 border-purple-400 bg-gradient-to-r from-blue-100 to-purple-100
-          text-purple-800 font-mono text-sm font-medium
-          rounded-sm shadow-sm
-          hover:shadow-[0_0_10px_cyan] transition-all duration-300
+          absolute pointer-events-none select-none pixel-badge
           will-change-transform
         `;
         skillDiv.style.transform = `translate(${body.position.x - body.bounds.max.x / 2}px, ${body.position.y - body.bounds.max.y / 2}px)`;

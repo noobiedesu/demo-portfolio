@@ -6,7 +6,7 @@ import CaseStudies from '@/components/CaseStudies';
 import Process from '@/components/Process';
 import SkillsGravity from '@/components/SkillsGravity';
 import ToolsSection from '@/components/ToolsSection';
-import SkillsToolsBoard from '@/components/SkillsToolsBoard';
+
 
 const Index = () => {
   // Reveal animation on scroll
@@ -59,9 +59,6 @@ const Index = () => {
         <ToolsSection />
       </div>
       
-      <div className="reveal px-4 md:px-0">
-        <SkillsToolsBoard />
-      </div>
     </Layout>
   );
 };
