@@ -10,9 +10,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
+      // Disable shrink on scroll when menu is open
+      if (!mobileMenuOpen && window.scrollY > 10) {
         setIsScrolled(true);
-      } else {
+      } else if (!mobileMenuOpen) {
         setIsScrolled(false);
       }
     };
@@ -21,7 +22,21 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [mobileMenuOpen]);
+
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <header 
@@ -36,15 +51,18 @@ const Navbar = () => {
         </a>
         
         {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden focus:outline-none z-50"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <div className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
-          <div className={`w-6 h-0.5 bg-foreground my-1.5 transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></div>
-          <div className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
-        </button>
+        <div className="md:hidden flex items-center space-x-2">
+          <ThemeToggle />
+          <button 
+            className="focus:outline-none z-[201] relative p-2 pixel-button text-2xl"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <div className={`w-8 h-1 bg-foreground transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2.5' : ''}`}></div>
+            <div className={`w-8 h-1 bg-foreground my-2 transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></div>
+            <div className={`w-8 h-1 bg-foreground transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2.5' : ''}`}></div>
+          </button>
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-4">
@@ -60,45 +78,42 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div 
-          className={`md:hidden fixed inset-0 bg-background flex flex-col justify-center items-center p-4 transition-transform duration-300 ease-in-out ${
+          className={`md:hidden fixed inset-0 z-[200] h-dvh bg-background flex flex-col justify-center items-center p-4 transition-transform duration-300 ease-in-out ${
             mobileMenuOpen ? 'transform translate-x-0' : 'transform translate-x-full'
           }`}
         >
           <nav className="flex flex-col space-y-6 items-center">
             <a 
               href="#home" 
-              className="text-xl font-mono hover:text-accent transition-colors pixel-animate" 
+              className="text-xl font-mono pixel-badge" 
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
             </a>
             <a 
               href="#projects" 
-              className="text-xl font-mono hover:text-accent transition-colors pixel-animate" 
+              className="text-xl font-mono pixel-badge" 
               onClick={() => setMobileMenuOpen(false)}
             >
               Work
             </a>
             <a 
               href="#about" 
-              className="text-xl font-mono hover:text-accent transition-colors pixel-animate" 
+              className="text-xl font-mono pixel-badge" 
               onClick={() => setMobileMenuOpen(false)}
             >
               About
             </a>
             <a 
               href="#contact" 
-              className="text-xl font-mono hover:text-accent transition-colors pixel-animate" 
+              className="text-xl font-mono pixel-badge" 
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact
             </a>
-            <div className="pt-4">
-              <ThemeToggle />
-            </div>
             <Button 
               asChild 
-              className="pixel-button w-full"
+              className="pixel-button mt-6"
               onClick={() => setMobileMenuOpen(false)}
             >
               <a href="#contact">Hire Me</a>
