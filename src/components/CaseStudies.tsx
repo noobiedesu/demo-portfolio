@@ -26,9 +26,9 @@ const CaseStudies = () => {
   }, []);
 
   return (
-    <section id="case-studies" className="py-10 md:py-20">
+    <section id="case-studies" className="py-10 md:py-20" aria-label="Marketing case studies and project results">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-10">
+        <header className="text-center mb-10">
           <Badge className="pixel-button bg-accent/20 text-accent border-accent/20 mb-3 font-mono">
             Case Studies
           </Badge>
@@ -36,18 +36,26 @@ const CaseStudies = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto font-mono text-xs md:text-sm">
             Strategic marketing initiatives that drove measurable outcomes
           </p>
-        </div>
+        </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6">
           {caseStudies.map(study => {
             const isFlipped = flipped.has(study.id);
             return (
-              <div key={study.id} className="case-study-reveal">
+              <article key={study.id} className="case-study-reveal">
                 <div
                   className={`flip-card group relative w-full aspect-[4/5] sm:aspect-[3/4] ${isFlipped ? "flipped" : ""}`}
                   onClick={() => toggle(study.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      toggle(study.id);
+                    }
+                  }}
                   role="button"
-                  aria-label={`Toggle ${study.title}`}
+                  tabIndex={0}
+                  aria-label={`Toggle details for ${study.title} case study`}
+                  aria-expanded={isFlipped}
                 >
                   <div className="flip-card-inner absolute inset-0">
 
@@ -57,8 +65,11 @@ const CaseStudies = () => {
                         <div className="relative w-full aspect-video overflow-hidden">
                           <img
                             src={study.image}
-                            alt={study.title}
+                            alt={`Screenshot of ${study.title} marketing campaign results`}
                             className="w-full h-full object-cover pixel-image"
+                            loading="lazy"
+                            width="400"
+                            height="225"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
                           <Badge variant="outline" className="absolute top-2 right-2 text-[10px] sm:text-xs bg-background/80">
@@ -76,21 +87,21 @@ const CaseStudies = () => {
                           <p className="text-[11px] md:text-xs text-muted-foreground font-mono mb-2">
                             Skills Used:
                           </p>
-                          <div className="flex flex-wrap gap-1.5">
+                          <div className="flex flex-wrap gap-1.5" role="list" aria-label="Marketing skills used in this project">
                             {study.skills.slice(0, 4).map((s: string, i: number) => (
-                              <Badge key={i} variant="secondary" className="text-[10px] md:text-xs px-2 py-0.5">
+                              <Badge key={i} variant="secondary" className="text-[10px] md:text-xs px-2 py-0.5" role="listitem">
                                 #{s}
                               </Badge>
                             ))}
                             {study.skills.length > 4 && (
-                              <Badge variant="outline" className="text-[10px] md:text-xs px-2 py-0.5">
-                                +{study.skills.length - 4}
+                              <Badge variant="outline" className="text-[10px] md:text-xs px-2 py-0.5" role="listitem">
+                                +{study.skills.length - 4} more
                               </Badge>
                             )}
                           </div>
 
                           <p className="mt-3 text-[10px] md:text-xs text-muted-foreground font-mono flex items-center gap-1">
-                            <RotateCcw className="w-3 h-3 shrink-0" />
+                            <RotateCcw className="w-3 h-3 shrink-0" aria-hidden="true" />
                             Tap/Click to flip
                           </p>
                         </CardContent>
@@ -105,7 +116,7 @@ const CaseStudies = () => {
                             <Badge variant="outline" className="text-[10px] sm:text-xs">
                               {study.period}
                             </Badge>
-                            <RotateCcw className="w-4 h-4 text-muted-foreground" />
+                            <RotateCcw className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
                           </div>
                           <CardTitle className="text-[13px] md:text-sm font-mono leading-snug line-clamp-2">
                             {study.title}
@@ -115,7 +126,7 @@ const CaseStudies = () => {
                         <CardContent className="px-3 pb-3 space-y-3 overflow-y-auto">
                           <div>
                             <div className="flex items-center gap-1 mb-1">
-                              <Target className="w-3 h-3 text-destructive shrink-0" />
+                              <Target className="w-3 h-3 text-destructive shrink-0" aria-hidden="true" />
                               <span className="font-semibold text-foreground text-xs">Problem</span>
                             </div>
                             <p className="text-muted-foreground text-[11px] leading-5 line-clamp-3">
@@ -125,31 +136,31 @@ const CaseStudies = () => {
 
                           <div>
                             <div className="flex items-center gap-1 mb-1">
-                              <Zap className="w-3 h-3 text-yellow-500 shrink-0" />
+                              <Zap className="w-3 h-3 text-yellow-500 shrink-0" aria-hidden="true" />
                               <span className="font-semibold text-foreground text-xs">Actions</span>
                             </div>
-                            <ul className="space-y-1">
+                            <ul className="space-y-1" role="list">
                               {study.actions.slice(0, 2).map((a: string, i: number) => (
-                                <li key={i} className="text-muted-foreground text-[11px] leading-5 flex gap-1">
-                                  <span className="text-accent mt-1">•</span>
+                                <li key={i} className="text-muted-foreground text-[11px] leading-5 flex gap-1" role="listitem">
+                                  <span className="text-accent mt-1" aria-hidden="true">•</span>
                                   <span className="line-clamp-2">{a}</span>
                                 </li>
                               ))}
                               {study.actions.length > 2 && (
-                                <li className="text-muted-foreground text-[11px]">+{study.actions.length - 2} more…</li>
+                                <li className="text-muted-foreground text-[11px]" role="listitem">+{study.actions.length - 2} more…</li>
                               )}
                             </ul>
                           </div>
 
                           <div>
                             <div className="flex items-center gap-1 mb-1">
-                              <CheckCircle className="w-3 h-3 text-green-500 shrink-0" />
+                              <CheckCircle className="w-3 h-3 text-green-500 shrink-0" aria-hidden="true" />
                               <span className="font-semibold text-foreground text-xs">Results</span>
                             </div>
-                            <ul className="space-y-1">
+                            <ul className="space-y-1" role="list">
                               {study.results.slice(0, 3).map((r: string, i: number) => (
-                                <li key={i} className="text-muted-foreground text-[11px] leading-5 flex gap-1">
-                                  <span className="text-primary mt-1">✓</span>
+                                <li key={i} className="text-muted-foreground text-[11px] leading-5 flex gap-1" role="listitem">
+                                  <span className="text-primary mt-1" aria-hidden="true">✓</span>
                                   <span className="line-clamp-2">{r}</span>
                                 </li>
                               ))}
@@ -161,7 +172,7 @@ const CaseStudies = () => {
 
                   </div>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>

@@ -62,10 +62,21 @@ const Process = () => {
     setExpandedStep(expandedStep === stepId ? null : stepId);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent, stepId: string) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleStep(stepId);
+    }
+  };
+
   return (
-    <section className="section py-16 md:py-24 bg-gradient-to-br from-background via-background/80 to-primary/5 relative overflow-hidden">
+    <section 
+      id="process"
+      className="section py-16 md:py-24 bg-gradient-to-br from-background via-background/80 to-primary/5 relative overflow-hidden"
+      aria-label="5-step marketing workflow process"
+    >
       {/* Animated background grid */}
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-20" aria-hidden="true">
         <div className="absolute inset-0" style={{
           backgroundImage: `
             linear-gradient(rgba(var(--primary), 0.1) 1px, transparent 1px),
@@ -77,7 +88,7 @@ const Process = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
+        <header className="text-center mb-16">
           <Badge className="pixel-button bg-accent/20 text-accent border-accent/20 mb-4 font-mono">
             My Process
           </Badge>
@@ -87,25 +98,30 @@ const Process = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto font-mono text-sm">
             A systematic approach to creating data-driven marketing campaigns that deliver measurable results
           </p>
-        </div>
+        </header>
 
         {/* Desktop Horizontal Timeline */}
         <div className="hidden md:block">
           <div className="relative">
             {/* Animated connector line */}
-            <div className="absolute top-24 left-8 right-8 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 rounded-full opacity-60">
+            <div className="absolute top-24 left-8 right-8 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 rounded-full opacity-60" aria-hidden="true">
               <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 rounded-full animate-pulse" />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[slide-in-right_3s_ease-in-out_infinite]" />
             </div>
 
             <div className="grid grid-cols-5 gap-8 relative z-10">
               {processSteps.map((step, index) => (
-                <div key={step.id} className="text-center">
+                <article key={step.id} className="text-center">
                   <Card 
                     className={`pixel-card cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-2 border-2 border-primary/30 bg-background/80 backdrop-blur-sm ${
                       expandedStep === step.id ? 'border-accent shadow-accent/25' : ''
                     }`}
                     onClick={() => toggleStep(step.id)}
+                    onKeyDown={(e) => handleKeyDown(e, step.id)}
+                    tabIndex={0}
+                    role="button"
+                    aria-expanded={expandedStep === step.id}
+                    aria-label={`Step ${step.number}: ${step.title}. ${step.description}. Click to learn more about my approach.`}
                   >
                     <CardContent className="p-6">
                       {/* Step Number Circle */}
@@ -114,7 +130,7 @@ const Process = () => {
                       </div>
                       
                       {/* Icon */}
-                      <step.icon className="w-8 h-8 mx-auto mb-3 text-primary animate-pixelPulse" />
+                      <step.icon className="w-8 h-8 mx-auto mb-3 text-primary animate-pixelPulse" aria-hidden="true" />
                       
                       {/* Title & Description */}
                       <h3 className="font-mono font-bold text-lg mb-2 text-foreground">
@@ -137,7 +153,7 @@ const Process = () => {
                       )}
                     </CardContent>
                   </Card>
-                </div>
+                </article>
               ))}
             </div>
           </div>
@@ -146,10 +162,10 @@ const Process = () => {
         {/* Mobile Vertical Stepper */}
         <div className="md:hidden space-y-6">
           {processSteps.map((step, index) => (
-            <div key={step.id} className="relative">
+            <article key={step.id} className="relative">
               {/* Connector Line */}
               {index < processSteps.length - 1 && (
-                <div className="absolute left-6 top-20 w-1 h-12 bg-gradient-to-b from-pink-500 via-purple-500 to-cyan-500 rounded-full opacity-60 animate-pixelGlow" />
+                <div className="absolute left-6 top-20 w-1 h-12 bg-gradient-to-b from-pink-500 via-purple-500 to-cyan-500 rounded-full opacity-60 animate-pixelGlow" aria-hidden="true" />
               )}
               
               <Card 
@@ -157,6 +173,11 @@ const Process = () => {
                   expandedStep === step.id ? 'border-accent shadow-accent/25' : ''
                 }`}
                 onClick={() => toggleStep(step.id)}
+                onKeyDown={(e) => handleKeyDown(e, step.id)}
+                tabIndex={0}
+                role="button"
+                aria-expanded={expandedStep === step.id}
+                aria-label={`Step ${step.number}: ${step.title}. ${step.description}. Click to learn more about my approach.`}
               >
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
@@ -167,7 +188,7 @@ const Process = () => {
                     
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-2">
-                        <step.icon className="w-6 h-6 text-primary animate-pixelPulse" />
+                        <step.icon className="w-6 h-6 text-primary animate-pixelPulse" aria-hidden="true" />
                         <h3 className="font-mono font-bold text-lg text-foreground">
                           {step.title}
                         </h3>
@@ -191,7 +212,7 @@ const Process = () => {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </article>
           ))}
         </div>
 
@@ -200,7 +221,11 @@ const Process = () => {
           <p className="text-sm text-muted-foreground font-mono mb-4">
             Ready to see this process in action?
           </p>
-          <button className="pixel-button bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 text-white px-6 py-3 font-mono font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300">
+          <button 
+            className="pixel-button bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 text-white px-6 py-3 font-mono font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            aria-label="Start working with me - scroll to contact section"
+          >
             Let's Get Started ⚡
           </button>
         </div>

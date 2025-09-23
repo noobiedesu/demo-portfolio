@@ -71,8 +71,10 @@ export default {
 				}
 			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
-				playfair: ['Playfair Display', 'serif'],
+				sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+				playfair: ['Playfair Display', 'Georgia', 'serif'],
+				pixel: ['Press Start 2P', 'ui-monospace', 'SFMono-Regular', 'Consolas', 'monospace'],
+				mono: ['ui-monospace', 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'monospace'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
