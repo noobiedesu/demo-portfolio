@@ -11,8 +11,13 @@ interface Skill {
 
 interface SkillChipProps {
   skill: Skill;
-  isMobile: boolean;
   onMove: (id: string, position: { x: number; y: number }) => void;
+  isHighlighted: boolean;
+  onHighlight: (id: string | null) => void;
+}
+
+interface MobileSkillChipProps {
+  skill: Skill;
   isHighlighted: boolean;
   onHighlight: (id: string | null) => void;
 }
@@ -74,7 +79,41 @@ const skills: Skill[] = [
   }
 ];
 
-const SkillChip: React.FC<SkillChipProps> = ({ skill, isMobile, onMove, isHighlighted, onHighlight }) => {
+const MobileSkillChip: React.FC<MobileSkillChipProps> = ({ skill, isHighlighted, onHighlight }) => {
+  const handleMobileHighlight = useCallback(() => {
+    onHighlight(isHighlighted ? null : skill.id);
+  }, [isHighlighted, skill.id, onHighlight]);
+
+  const handleKeyPress = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleMobileHighlight();
+    }
+  }, [handleMobileHighlight]);
+
+  return (
+    <div
+      className={`
+        w-full flex-shrink-0 mb-2
+        pixel-badge border-2 border-dashed border-purple-500 bg-white/50 
+        px-3 py-2 cursor-pointer select-none transition-all duration-300
+        font-mono text-xs md:text-sm font-bold
+        hover:shadow-[0_0_15px_cyan] hover:bg-white/70
+        ${isHighlighted ? 'shadow-[0_0_15px_cyan] bg-white/70' : ''}
+      `}
+      onClick={handleMobileHighlight}
+      onKeyDown={handleKeyPress}
+      tabIndex={0}
+      role="listitem"
+      aria-label={`${skill.name}: ${skill.description}`}
+      title={skill.description}
+    >
+      <span className="break-words">{skill.name}</span>
+    </div>
+  );
+};
+
+const DesktopSkillChip: React.FC<SkillChipProps> = ({ skill, onMove, isHighlighted, onHighlight }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const [{ isDragging }, drag] = useDrag({
@@ -83,7 +122,6 @@ const SkillChip: React.FC<SkillChipProps> = ({ skill, isMobile, onMove, isHighli
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
-    canDrag: !isMobile,
   });
 
   const [, drop] = useDrop({
@@ -102,48 +140,32 @@ const SkillChip: React.FC<SkillChipProps> = ({ skill, isMobile, onMove, isHighli
     },
   });
 
-  const handleMobileHighlight = useCallback(() => {
-    if (isMobile) {
-      onHighlight(isHighlighted ? null : skill.id);
-    }
-  }, [isMobile, isHighlighted, skill.id, onHighlight]);
-
   const handleKeyPress = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      handleMobileHighlight();
+      onHighlight(isHighlighted ? null : skill.id);
     }
-  }, [handleMobileHighlight]);
+  }, [isHighlighted, skill.id, onHighlight]);
 
   drag(drop(ref));
-
-  const chipStyles = isMobile 
-    ? "w-full flex-shrink-0 mb-2"
-    : `absolute transform -translate-x-1/2 -translate-y-1/2`;
-
-  const positionStyles = isMobile 
-    ? {} 
-    : {
-        left: `${skill.position.x}%`,
-        top: `${skill.position.y}%`,
-        zIndex: skill.position.z,
-      };
 
   return (
     <div
       ref={ref}
       className={`
-        ${chipStyles}
+        absolute transform -translate-x-1/2 -translate-y-1/2
         pixel-badge border-2 border-dashed border-purple-500 bg-white/50 
         px-3 py-2 cursor-move select-none transition-all duration-300
         font-mono text-xs md:text-sm font-bold
         hover:shadow-[0_0_15px_cyan] hover:bg-white/70
         ${isDragging ? 'opacity-50 scale-110' : ''}
         ${isHighlighted ? 'shadow-[0_0_15px_cyan] bg-white/70' : ''}
-        ${isMobile ? 'cursor-pointer' : ''}
       `}
-      style={positionStyles}
-      onClick={handleMobileHighlight}
+      style={{
+        left: `${skill.position.x}%`,
+        top: `${skill.position.y}%`,
+        zIndex: skill.position.z,
+      }}
       onKeyDown={handleKeyPress}
       tabIndex={0}
       role="listitem"
@@ -224,16 +246,24 @@ const SkillsPile: React.FC = () => {
           role="list"
           aria-label="Skills list"
         >
-          {skillPositions.map((skill) => (
-            <SkillChip
-              key={skill.id}
-              skill={skill}
-              isMobile={isMobile}
-              onMove={moveSkill}
-              isHighlighted={highlightedSkill === skill.id}
-              onHighlight={setHighlightedSkill}
-            />
-          ))}
+          {skillPositions.map((skill) => 
+            isMobile ? (
+              <MobileSkillChip
+                key={skill.id}
+                skill={skill}
+                isHighlighted={highlightedSkill === skill.id}
+                onHighlight={setHighlightedSkill}
+              />
+            ) : (
+              <DesktopSkillChip
+                key={skill.id}
+                skill={skill}
+                onMove={moveSkill}
+                isHighlighted={highlightedSkill === skill.id}
+                onHighlight={setHighlightedSkill}
+              />
+            )
+          )}
         </div>
       </div>
 
@@ -252,8 +282,8 @@ const SkillsPile: React.FC = () => {
     </section>
   );
 
-  // For mobile or when DnD isn't loaded, render without DndProvider
-  if (isMobile || !isDndLoaded) {
+  // For mobile, render without DndProvider
+  if (isMobile) {
     return <SkillsContent />;
   }
 
