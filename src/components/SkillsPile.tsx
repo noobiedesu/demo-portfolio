@@ -1,222 +1,216 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 
 interface Skill {
-  id: string;
+  id: number;
   name: string;
-  description: string;
-  position: { x: number; y: number; z: number };
+  desc: string;
 }
 
-interface SkillChipProps {
-  skill: Skill;
-  onMove: (id: string, position: { x: number; y: number }) => void;
-  isHighlighted: boolean;
-  onHighlight: (id: string | null) => void;
-}
+const skills: Skill[] = [
+  { id: 1, name: "SEO & Content Strategy", desc: "Managed content strategy, keyword research, on-page SEO" },
+  { id: 2, name: "Local SEO & CRO", desc: "Achieved top Google Maps ranking, landing page optimization" },
+  { id: 3, name: "CRM & Email Automation", desc: "Zoho CRM workflows, automated email campaigns with 29-70% open rates" },
+  { id: 4, name: "Performance Marketing", desc: "Google Ads collaboration, CTR +14.5%, reduced erroneous leads 30%" },
+  { id: 5, name: "Analytics & Reporting", desc: "Data analysis using SEMrush/Ahrefs, performance metrics" },
+  { id: 6, name: "Data Analysis", desc: "Customer insights, behavior analysis, Excel/PowerPoint proficiency" },
+  { id: 7, name: "Campaign Development", desc: "Developed MOS courses, cross-platform campaigns (Facebook, TikTok)" },
+  { id: 8, name: "Project Management", desc: "Multi-tasking, event organization for seminars" },
+  { id: 9, name: "Communication Skills", desc: "Strong communication, teamwork, B2B/B2C sales experience" }
+];
 
 interface MobileSkillChipProps {
   skill: Skill;
   isHighlighted: boolean;
-  onHighlight: (id: string | null) => void;
+  onToggleHighlight: () => void;
 }
 
-const skills: Skill[] = [
-  {
-    id: 'seo-content',
-    name: 'SEO & Content Strategy',
-    description: 'Content strategy, keyword research, organic growth',
-    position: { x: 15, y: 25, z: 3 }
-  },
-  {
-    id: 'local-seo',
-    name: 'Local SEO & CRO',
-    description: 'Top Google Maps ranking, conversion optimization',
-    position: { x: 45, y: 35, z: 7 }
-  },
-  {
-    id: 'crm-email',
-    name: 'CRM & Email Automation',
-    description: 'Zoho CRM, email campaigns, open rates 29-70%',
-    position: { x: 70, y: 20, z: 2 }
-  },
-  {
-    id: 'performance-marketing',
-    name: 'Performance Marketing',
-    description: 'Google Ads CTR +14.5%, paid campaign optimization',
-    position: { x: 25, y: 55, z: 8 }
-  },
-  {
-    id: 'analytics-reporting',
-    name: 'Analytics & Reporting',
-    description: 'Data analysis, performance tracking, insights',
-    position: { x: 65, y: 45, z: 1 }
-  },
-  {
-    id: 'data-analysis',
-    name: 'Data Analysis',
-    description: 'Excel analysis, customer insights, data-driven decisions',
-    position: { x: 10, y: 45, z: 5 }
-  },
-  {
-    id: 'campaign-development',
-    name: 'Campaign Development',
-    description: 'Multi-channel campaigns, MOS course promotion',
-    position: { x: 85, y: 30, z: 4 }
-  },
-  {
-    id: 'project-management',
-    name: 'Project Management',
-    description: 'Cross-functional coordination, timeline management',
-    position: { x: 40, y: 65, z: 6 }
-  },
-  {
-    id: 'communication',
-    name: 'Communication Skills',
-    description: 'Stakeholder relations, presentation, documentation',
-    position: { x: 80, y: 55, z: 9 }
-  }
-];
-
-const MobileSkillChip: React.FC<MobileSkillChipProps> = ({ skill, isHighlighted, onHighlight }) => {
-  const handleMobileHighlight = useCallback(() => {
-    onHighlight(isHighlighted ? null : skill.id);
-  }, [isHighlighted, skill.id, onHighlight]);
-
+const MobileSkillChip: React.FC<MobileSkillChipProps> = ({ skill, isHighlighted, onToggleHighlight }) => {
   const handleKeyPress = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      handleMobileHighlight();
+      onToggleHighlight();
     }
-  }, [handleMobileHighlight]);
+  }, [onToggleHighlight]);
 
   return (
-    <div
+    <div 
+      onClick={onToggleHighlight}
+      onKeyDown={handleKeyPress}
+      tabIndex={0}
       className={`
-        w-full flex-shrink-0 mb-2
-        pixel-badge border-2 border-dashed border-purple-500 bg-white/50 
-        px-3 py-2 cursor-pointer select-none transition-all duration-300
-        font-mono text-xs md:text-sm font-bold
+        px-4 py-2 border-2 border-purple-500 bg-white/50 
+        font-mono text-sm text-center transition-all cursor-pointer
         hover:shadow-[0_0_15px_cyan] hover:bg-white/70
         ${isHighlighted ? 'shadow-[0_0_15px_cyan] bg-white/70' : ''}
       `}
-      onClick={handleMobileHighlight}
-      onKeyDown={handleKeyPress}
-      tabIndex={0}
-      role="listitem"
-      aria-label={`${skill.name}: ${skill.description}`}
-      title={skill.description}
+      aria-label={`${skill.name}: ${skill.desc}`}
+      role="button"
     >
-      <span className="break-words">{skill.name}</span>
+      <strong>{skill.name}</strong>
     </div>
   );
 };
 
-const DesktopSkillChip: React.FC<SkillChipProps> = ({ skill, onMove, isHighlighted, onHighlight }) => {
-  const ref = useRef<HTMLDivElement>(null);
+interface DesktopSkillsProps {
+  skills: Skill[];
+  onMoveSkill: (fromIndex: number, toIndex: number) => void;
+}
 
-  const [{ isDragging }, drag] = useDrag({
-    type: 'skill',
-    item: { id: skill.id },
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  });
+const DesktopSkills: React.FC<DesktopSkillsProps> = ({ skills: skillList, onMoveSkill }) => {
+  const [dndComponents, setDndComponents] = useState<{
+    DndProvider: any;
+    useDrag: any;
+    useDrop: any;
+    HTML5Backend: any;
+  } | null>(null);
 
-  const [, drop] = useDrop({
-    accept: 'skill',
-    drop: (item: { id: string }, monitor) => {
-      if (!ref.current) return;
-      const delta = monitor.getDifferenceFromInitialOffset();
-      if (delta) {
-        const rect = ref.current.parentElement?.getBoundingClientRect();
-        if (rect) {
-          const newX = Math.max(0, Math.min(80, (delta.x / rect.width) * 100));
-          const newY = Math.max(10, Math.min(70, (delta.y / rect.height) * 100));
-          onMove(item.id, { x: newX, y: newY });
-        }
+  useEffect(() => {
+    // Dynamically import react-dnd components
+    const loadDnd = async () => {
+      try {
+        const [dnd, backend] = await Promise.all([
+          import('react-dnd'),
+          import('react-dnd-html5-backend')
+        ]);
+        
+        setDndComponents({
+          DndProvider: dnd.DndProvider,
+          useDrag: dnd.useDrag,
+          useDrop: dnd.useDrop,
+          HTML5Backend: backend.HTML5Backend,
+        });
+      } catch (error) {
+        console.warn('Failed to load drag and drop functionality:', error);
       }
-    },
-  });
+    };
 
-  const handleKeyPress = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      onHighlight(isHighlighted ? null : skill.id);
+    loadDnd();
+  }, []);
+
+  const SkillChip: React.FC<{ skill: Skill; index: number }> = ({ skill, index }) => {
+    const ref = useRef<HTMLDivElement>(null);
+
+    if (!dndComponents) {
+      return (
+        <div 
+          className="absolute px-4 py-2 border-2 border-dashed border-purple-500 bg-white/50 font-mono text-sm transition-all duration-300"
+          style={{ 
+            left: `${Math.random() * 70 + 10}%`, 
+            top: `${Math.random() * 50 + 20}%`, 
+            zIndex: Math.floor(Math.random() * 10) + 1 
+          }}
+          title={skill.desc}
+        >
+          <strong>{skill.name}</strong>
+        </div>
+      );
     }
-  }, [isHighlighted, skill.id, onHighlight]);
 
-  drag(drop(ref));
+    const { useDrag, useDrop } = dndComponents;
+
+    const [{ isDragging }, drag] = useDrag({
+      type: 'SKILL',
+      item: { id: skill.id, index },
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging(),
+      }),
+    });
+
+    const [, drop] = useDrop({
+      accept: 'SKILL',
+      hover: (item: { id: number; index: number }) => {
+        if (item.index !== index) {
+          onMoveSkill(item.index, index);
+          item.index = index;
+        }
+      },
+    });
+
+    drag(drop(ref));
+
+    return (
+      <div 
+        ref={ref}
+        className={`
+          absolute px-4 py-2 border-2 border-dashed border-purple-500 bg-white/50 
+          font-mono text-sm cursor-move transition-all duration-300 will-change-transform
+          hover:shadow-[0_0_15px_cyan] hover:bg-white/70
+          ${isDragging ? 'opacity-50 scale-110' : ''}
+        `}
+        style={{ 
+          left: `${Math.random() * 70 + 10}%`, 
+          top: `${Math.random() * 50 + 20}%`, 
+          zIndex: Math.floor(Math.random() * 10) + 1 
+        }}
+        title={skill.desc}
+        aria-label={`${skill.name}: ${skill.desc}`}
+      >
+        <strong>{skill.name}</strong>
+      </div>
+    );
+  };
+
+  if (!dndComponents) {
+    return (
+      <div className="relative h-80 md:h-96 bg-gradient-to-br from-pink-200 to-purple-300 border-2 border-dotted border-cyan-500 p-4 overflow-hidden">
+        {skillList.map((skill, index) => (
+          <SkillChip key={skill.id} skill={skill} index={index} />
+        ))}
+      </div>
+    );
+  }
+
+  const { DndProvider, HTML5Backend } = dndComponents;
 
   return (
-    <div
-      ref={ref}
-      className={`
-        absolute transform -translate-x-1/2 -translate-y-1/2
-        pixel-badge border-2 border-dashed border-purple-500 bg-white/50 
-        px-3 py-2 cursor-move select-none transition-all duration-300
-        font-mono text-xs md:text-sm font-bold
-        hover:shadow-[0_0_15px_cyan] hover:bg-white/70
-        ${isDragging ? 'opacity-50 scale-110' : ''}
-        ${isHighlighted ? 'shadow-[0_0_15px_cyan] bg-white/70' : ''}
-      `}
-      style={{
-        left: `${skill.position.x}%`,
-        top: `${skill.position.y}%`,
-        zIndex: skill.position.z,
-      }}
-      onKeyDown={handleKeyPress}
-      tabIndex={0}
-      role="listitem"
-      aria-label={`${skill.name}: ${skill.description}`}
-      title={skill.description}
-    >
-      <span className="break-words">{skill.name}</span>
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <div className="relative h-80 md:h-96 bg-gradient-to-br from-pink-200 to-purple-300 border-2 border-dotted border-cyan-500 p-4 overflow-hidden">
+        {skillList.map((skill, index) => (
+          <SkillChip key={skill.id} skill={skill} index={index} />
+        ))}
+      </div>
+    </DndProvider>
   );
 };
 
 const SkillsPile: React.FC = () => {
+  const [skillList, setSkillList] = useState(skills);
   const [isMobile, setIsMobile] = useState(false);
-  const [skillPositions, setSkillPositions] = useState(skills);
-  const [highlightedSkill, setHighlightedSkill] = useState<string | null>(null);
-  const [isDndLoaded, setIsDndLoaded] = useState(false);
+  const [highlightedSkills, setHighlightedSkills] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     const checkMobile = () => {
-      const mobile = window.innerWidth < 768 || navigator.hardwareConcurrency < 4;
+      const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      
-      // Lazy load react-dnd only for desktop
-      if (!mobile && !isDndLoaded) {
-        setIsDndLoaded(true);
-      }
     };
 
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-    };
-  }, [isDndLoaded]);
-
-  const moveSkill = useCallback((id: string, newPosition: { x: number; y: number }) => {
-    setSkillPositions(prev => 
-      prev.map(skill => 
-        skill.id === id 
-          ? { ...skill, position: { ...skill.position, ...newPosition } }
-          : skill
-      )
-    );
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const containerStyles = isMobile
-    ? "h-80 flex flex-col gap-2 p-4 overflow-y-auto"
-    : "h-96 relative p-4 overflow-hidden";
+  const moveSkill = useCallback((fromIndex: number, toIndex: number) => {
+    setSkillList(prev => {
+      const updated = [...prev];
+      const [moved] = updated.splice(fromIndex, 1);
+      updated.splice(toIndex, 0, moved);
+      return updated;
+    });
+  }, []);
 
-  const SkillsContent = () => (
+  const toggleHighlight = useCallback((skillId: number) => {
+    setHighlightedSkills(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(skillId)) {
+        newSet.delete(skillId);
+      } else {
+        newSet.add(skillId);
+      }
+      return newSet;
+    });
+  }, []);
+
+  return (
     <section 
       id="skills" 
       className="py-8 md:py-12"
@@ -228,43 +222,24 @@ const SkillsPile: React.FC = () => {
             💾 Core Skills
           </h2>
           <p className="font-mono text-sm md:text-base leading-relaxed text-muted-foreground max-w-2xl mx-auto">
-            {isMobile ? "Tap skills to highlight" : "Drag and rearrange the skill chips below"}
+            {isMobile ? "Tap skills to highlight them" : "Drag and rearrange the skill chips below"}
           </p>
         </header>
         
-        <div 
-          className={`
-            ${containerStyles}
-            bg-gradient-to-br from-pink-200 to-purple-300 
-            border-2 border-dotted border-cyan-500 rounded-lg
-          `}
-          style={{
-            willChange: 'transform',
-            transform: 'translate3d(0,0,0)',
-            filter: 'url(#pixelate)'
-          }}
-          role="list"
-          aria-label="Skills list"
-        >
-          {skillPositions.map((skill) => 
-            isMobile ? (
+        {isMobile ? (
+          <div className="h-80 bg-gradient-to-br from-pink-200 to-purple-300 border-2 border-dotted border-cyan-500 p-4 overflow-auto flex flex-col gap-2">
+            {skillList.map((skill) => (
               <MobileSkillChip
                 key={skill.id}
                 skill={skill}
-                isHighlighted={highlightedSkill === skill.id}
-                onHighlight={setHighlightedSkill}
+                isHighlighted={highlightedSkills.has(skill.id)}
+                onToggleHighlight={() => toggleHighlight(skill.id)}
               />
-            ) : (
-              <DesktopSkillChip
-                key={skill.id}
-                skill={skill}
-                onMove={moveSkill}
-                isHighlighted={highlightedSkill === skill.id}
-                onHighlight={setHighlightedSkill}
-              />
-            )
-          )}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <DesktopSkills skills={skillList} onMoveSkill={moveSkill} />
+        )}
       </div>
 
       {/* SVG Filter for pixel effect */}
@@ -280,18 +255,6 @@ const SkillsPile: React.FC = () => {
         </defs>
       </svg>
     </section>
-  );
-
-  // For mobile, render without DndProvider
-  if (isMobile) {
-    return <SkillsContent />;
-  }
-
-  // For desktop, wrap with DndProvider
-  return (
-    <DndProvider backend={HTML5Backend}>
-      <SkillsContent />
-    </DndProvider>
   );
 };
 
