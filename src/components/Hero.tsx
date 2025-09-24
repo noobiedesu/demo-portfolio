@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-accent/20 to-primary/20 px-4 md:px-0"
+      className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-accent/20 to-primary/20 px-4 md:px-0 py-12 md:py-16 lg:py-20"
       aria-label="Homepage hero section"
     >
       {/* Pixel background elements */}
@@ -30,18 +30,18 @@ const Hero = () => {
             />
           </div>
           
-          <h1 className="pixel-title text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 animate-[fade-in_1s_ease-out]">
+          <h1 className="font-mono font-bold text-2xl md:text-3xl lg:text-4xl tracking-tight mb-6 animate-[fade-in_1s_ease-out]">
             👋 Hi there, I'm <span className="text-primary">Tran Duyen</span>
           </h1>
           
-          <p className="text-sm md:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto animate-[fade-in_1.2s_ease-out] font-mono">
+          <p className="font-mono text-sm md:text-base lg:text-lg leading-relaxed text-muted-foreground mb-10 max-w-2xl mx-auto animate-[fade-in_1.2s_ease-out]">
             Digital Marketing Specialist crafting strategies that resonate, not just decorate
           </p>
           
           <nav className="flex flex-col sm:flex-row justify-center gap-4 animate-[fade-in_1.4s_ease-out]" aria-label="Primary actions">
             <Button 
               asChild 
-              className="pixel-button text-lg px-8 py-4 group"
+              className="pixel-button text-xs md:text-sm px-8 py-4 group"
               aria-label="View my marketing case studies and project results"
             >
               <a href="#case-studies">
@@ -52,7 +52,7 @@ const Hero = () => {
             <Button 
               asChild 
               variant="outline" 
-              className="pixel-button text-lg px-8 py-4 group"
+              className="pixel-button text-xs md:text-sm px-8 py-4 group"
               aria-label="Download my resume as PDF"
             >
               <a href="assets/Tran_Thi_Duyen_CV.pdf" target="_blank" rel="noopener noreferrer">
