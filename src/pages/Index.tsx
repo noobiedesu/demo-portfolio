@@ -4,7 +4,7 @@ import Layout from '@/components/Layout';
 import Hero from '@/components/Hero';
 import CaseStudies from '@/components/CaseStudies';
 import Process from '@/components/Process';
-import SkillsPile from '@/components/SkillsPile';
+import CoreSkillsCloud from '@/components/CoreSkillsCloud';
 import ToolsSection from '@/components/ToolsSection';
 
 
@@ -52,7 +52,7 @@ const Index = () => {
       </div>
       
       <div className="reveal px-4 md:px-0">
-        <SkillsPile />
+        <CoreSkillsCloud />
       </div>
       
       <div className="reveal px-4 md:px-0">
