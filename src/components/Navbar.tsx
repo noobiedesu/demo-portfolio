@@ -85,28 +85,28 @@ const Navbar = () => {
           <nav className="flex flex-col space-y-6 items-center">
             <a 
               href="#home" 
-              className="text-xl font-mono pixel-badge" 
+              className="text-base md:text-lg font-mono pixel-badge" 
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
             </a>
             <a 
               href="#projects" 
-              className="text-xl font-mono pixel-badge" 
+              className="text-base md:text-lg font-mono pixel-badge" 
               onClick={() => setMobileMenuOpen(false)}
             >
               Work
             </a>
             <a 
               href="#about" 
-              className="text-xl font-mono pixel-badge" 
+              className="text-base md:text-lg font-mono pixel-badge" 
               onClick={() => setMobileMenuOpen(false)}
             >
               About
             </a>
             <a 
               href="#contact" 
-              className="text-xl font-mono pixel-badge" 
+              className="text-base md:text-lg font-mono pixel-badge" 
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact
